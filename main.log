@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.24)  22 MAR 2024 20:08
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.24)  23 MAR 2024 02:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,6 +250,8 @@ LaTeX Info: Redefining \] on input line 2954.
 \g__um_primekern_muskip=\muskip18
  (d:/Program Files/texlive/2023/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (d:/Program Files/texlive/2023/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
+) (d:/Program Files/texlive/2023/texmf-dist/tex/latex/fixdif/fixdif.sty
+Package: fixdif 2023/02/21 Interface for defining differential operators.
 ) (d:/Program Files/texlive/2023/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
 Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
  (d:/Program Files/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (d:/Program Files/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (d:/Program Files/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (d:/Program Files/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
@@ -1035,22 +1037,22 @@ LaTeX Warning: Unused global option(s):
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1087,109 +1089,153 @@ LaTeX Font Info:    ... okay on input line 13.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 13.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 13.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 14.
+LaTeX Info: Redefining \d on input line 14.
+LaTeX Info: Redefining \partial on input line 14.
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 443.57848pt, 85.35826pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=443.57848pt
+* \textheight=556.47656pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Overfull \hbox (9.67229pt too wide) in paragraph at lines 29--30
-\TU/MinionPro(0)/m/n/10 under some additional assumptions about the topological space
- []
-
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 35.
+(Font)              scaled to size 10.00107pt on input line 32.
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 7.20076pt on input line 35.
+(Font)              scaled to size 7.20076pt on input line 32.
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 5.20055pt on input line 35.
+(Font)              scaled to size 5.20055pt on input line 32.
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 35.
+(Font)              scaled to size 9.99893pt on input line 32.
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 7.19922pt on input line 35.
+(Font)              scaled to size 7.19922pt on input line 32.
 LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 5.19943pt on input line 35.
+(Font)              scaled to size 5.19943pt on input line 32.
 LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
-(Font)              scaled to size 7.08035pt on input line 35.
+(Font)              scaled to size 7.08035pt on input line 32.
 LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
-(Font)              scaled to size 5.11359pt on input line 35.
+(Font)              scaled to size 5.11359pt on input line 32.
 [1
 
+
+] [2] [3] [4] [5]
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 8.00085pt on input line 290.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 6.00064pt on input line 290.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 5.00053pt on input line 290.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 290.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 290.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 290.
+LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
+(Font)              scaled to size 7.86707pt on input line 290.
+LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
+(Font)              scaled to size 5.9003pt on input line 290.
+LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
+(Font)              scaled to size 4.91692pt on input line 290.
+ [6] [7]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(22.76228pt, 568.77043pt, 22.76228pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=568.77043pt
+* \textheight=556.47656pt
+* \oddsidemargin=-49.5077pt
+* \evensidemargin=-49.5077pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Overfull \hbox (5.4097pt too wide) in paragraph at lines 356--357
+[]\TU/方正新书宋.TTF(0)/m/n/10 本 文 中\TU/MinionPro(1)/m/n/10 , $[]$ \TU/方正新书宋.TTF(0)/m/n/10 代 表 任 意 拓 扑 空 间\TU/MinionPro(1)/m/n/10 , $[]$ \TU/方正新书宋.TTF(0)/m/n/10 表 示 $[]$ 的 一 个 定 点\TU/MinionPro(1)/m/n/10 . Schnare[3]
+ []
+
+[8
+
 ]
-Overfull \hbox (5.45662pt too wide) in paragraph at lines 86--93
-[][]$\TU/MinionPro(0)/m/n/10 -spaces. In fact, this implication holds even under a weaker
+LaTeX Font Info:    Calculating math sizes for size <7.2> on input line 385.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 5.0405pt on input line 385.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
+(Font)              scaled to size 3.60037pt on input line 385.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 5.03941pt on input line 385.
+LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
+(Font)              scaled to size 3.5996pt on input line 385.
+LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
+(Font)              scaled to size 4.9562pt on input line 385.
+LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
+(Font)              scaled to size 3.54016pt on input line 385.
+
+Overfull \hbox (0.23692pt too wide) in paragraph at lines 404--411
+\TU/MinionPro(1)/m/n/10 at $[]$. However, b-compact certainly implies m-compact in $[][]$-spaces.
  []
 
 
-Overfull \hbox (0.94673pt too wide) in paragraph at lines 86--93
-\TU/MinionPro(0)/m/n/10 assumption on the topological space. To explain this assump-
+Overfull \hbox (12.24306pt too wide) in paragraph at lines 432--433
+[]\TU/方正新书宋.TTF(0)/m/n/10 当 然\TU/MinionPro(1)/m/n/10 , \TU/方正新书宋.TTF(0)/m/n/10 在 一 般 空 间 中\TU/MinionPro(1)/m/n/10 , b-compact \TU/方正新书宋.TTF(0)/m/n/10 并 不 意 味 着 \TU/MinionPro(1)/m/n/10 m-compact. Gross[4]
  []
 
-LaTeX Font Info:    Calculating math sizes for size <7.2> on input line 95.
-LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 5.0405pt on input line 95.
-LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 3.60037pt on input line 95.
-LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 5.03941pt on input line 95.
-LaTeX Font Info:    Font shape `TU/MinionMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 3.5996pt on input line 95.
-LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
-(Font)              scaled to size 4.9562pt on input line 95.
-LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/m/n' will be
-(Font)              scaled to size 3.54016pt on input line 95.
-[2]
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 132.
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(2)/m/n' will be
-(Font)              scaled to size 7.20076pt on input line 132.
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(2)/m/n' will be
-(Font)              scaled to size 5.20055pt on input line 132.
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 132.
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(3)/m/n' will be
-(Font)              scaled to size 7.19922pt on input line 132.
-LaTeX Font Info:    Font shape `TU/MinionMath-Bold.otf(3)/m/n' will be
-(Font)              scaled to size 5.19943pt on input line 132.
-
-
-LaTeX Font Warning: Font shape `TU/Garamond-Math.otf(0)/b/n' undefined
-(Font)              using `TU/Garamond-Math.otf(0)/m/n' instead on input line 132.
-
-LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/b/n' will be
-(Font)              scaled to size 7.08035pt on input line 132.
-LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/b/n' will be
-(Font)              scaled to size 5.11359pt on input line 132.
-
-LaTeX Font Warning: Font shape `TU/Garamond-Math.otf(1)/b/n' undefined
-(Font)              using `TU/Garamond-Math.otf(1)/m/n' instead on input line 132.
-
-
-LaTeX Font Warning: Font shape `TU/Garamond-Math.otf(2)/b/n' undefined
-(Font)              using `TU/Garamond-Math.otf(2)/m/n' instead on input line 132.
-
-
-LaTeX Font Warning: Font shape `TU/NewComputerModernMath(0)/b/n' undefined
-(Font)              using `TU/NewComputerModernMath(0)/m/n' instead on input line 132.
-
-
-LaTeX Font Warning: Font shape `TU/MinionMath-Regular.otf(4)/b/n' undefined
-(Font)              using `TU/MinionMath-Regular.otf(4)/m/n' instead on input line 132.
-
-LaTeX Font Info:    Font shape `TU/Garamond-Math.otf(0)/b/n' will be
-(Font)              scaled to size 9.83383pt on input line 142.
-Missing character: There is no 的 (U+7684) in font [MinionMath-Regular.otf]/OT:script=math;language=dflt;+ssty=0;!
-Missing character: There is no 在 (U+5728) in font [MinionMath-Regular.otf]/OT:script=math;language=dflt;+ssty=0;!
-[3] [4] [5] [6] [7] [8] (./main.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- ) 
+[9] [10] [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 23438 strings out of 476683
- 542286 string characters out of 5801401
- 1894012 words of memory out of 5000000
- 43290 multiletter control sequences out of 15000+600000
- 518902 words of font info for 135 fonts, out of 8000000 for 9000
+ 23525 strings out of 476683
+ 544660 string characters out of 5801401
+ 1906012 words of memory out of 5000000
+ 43343 multiletter control sequences out of 15000+600000
+ 520750 words of font info for 165 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 114i,16n,122p,1115b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 114i,16n,122p,1106b,2768s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (8 pages).
+Output written on main.pdf (11 pages).

@@ -5,6 +5,7 @@
 \usepackage{unicode-math}
 \usepackage{cancel}
 \usepackage{fontspec}
+\usepackage{fixdif}
 \usepackage{tikz-cd}
 \usepackage{paracol}
 \input{font}
@@ -13,11 +14,328 @@
 \begin{document}
 \newenvironment{remark}{
 	\begin{center}
-		\begin{minipage}{0.8\textwidth}\linespread{1.3}\selectfont\itshape Remark: }{\end{minipage}
+		\begin{minipage}{0.8\textwidth}\linespread{1.3}\selectfont\itshape}
+			{\end{minipage}
 	\end{center}
-}
+	\vspace*{4pt}}
 \newenvironment{en}{}{\switchcolumn}
 \newenvironment{cn}{\linespread{1.3}\selectfont}{\switchcolumn*}
+
+\newgeometry{left = 3cm, right = 3cm}
+\section{延拓定理}
+
+\linespread{1.3}\selectfont
+\begin{center}{\bf\Huge{关于延拓定理的注注又记记}}\\
+	{\scshape{Xiong Rui}}
+\end{center}
+\begin{remark}
+	引理(Urysohn, 一般版本). 对于正规空间(=T2+T4) $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
+	\[
+			f(A)=0 \quad f(B)=1
+	\]
+\end{remark}
+
+证明. 取任意一个在 $[0,1]$ 上稠密的可数集 $\left\{a_i\right\}_{i=0}^{\infty}$ (例如 $\left.\mathbb{Q} \cap[0,1]\right)$, 不妨假设 $a_0=0, a_1=1$. 下面拟构造一系列开集(除了 $\left.U_0\right)\left\{U_i\right\}_{i=0}^{\infty}$, 使得
+\[
+		a_i<a_j \Longleftrightarrow \overline{U_i} \subseteq U_j
+\]
+具体来说, 令 $U_0=A, U_1=B^c$, 假设 $i<n$ 已经构造好, 假设 $a_i<a_n<a_j$. 此时根据条件, $\overline{U_i} \subseteq U_j$, 即 $\overline{U_i}$ 与 $U_j^c$ 不交, 故存在开集 $U_n$ 使得
+\[
+		\overline{U_i} \subseteq U_n \subseteq \overline{U_n} \subseteq U_j
+\]
+这样, 登高面已经决定好, 下面我们说明其决定了函数. 定义
+\[
+		f: X \longrightarrow[0,1] \quad x \longmapsto \inf \left\{a_i: x \in U_i\right\}
+\]
+
+下面说明其连续,
+\begin{itemize}
+	\item $f(x)<r$ 当且仅当对 $x \in \bigcup_{a_i<r} U_i$ 是开集.
+	\item 因为 $a_i$ 稠密, $U_i$ 嵌套的性质, $f(x)>s$ 当且仅当存在 $s<a_i$ 满足 $x \notin U_i$, 再利用稠密性知道这还当且仅当存在 $s<a_j<a_i$ 使得 $x \notin \overline{U_j}$, 这当且仅当 $x \in \bigcup_{s<a_j}\left(\overline{U_j}\right)^c$ 还是开集.
+
+			这说明 $f$ 连续. 不难看出 $f(A)=0, f(B)=1$.
+\end{itemize}
+\begin{remark}
+
+	相比之下, 度量空间的Urysohn引理更加容易, 且结论更强
+	\hrulefill
+	引理(Urysohn, 度量空间). 对于度量空间 $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数\emph{完全分离}, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
+	\[
+			f^{-1}(0)=A \quad f^{-1}(1)=B
+	\]
+\end{remark}
+证明. 作 $g(x)=\frac{d(x, A)}{d(x, A)+d(x, B)}$, 注意, 因为 $A$ 是闭集, 故 $d(x, A)=0 \Longleftrightarrow x \in A$, 故分母不为零, 该函数确实被定义, 再根据二者都非负不难得到 $g(X) \subseteq[0,1]$. 不难得到此时 $g(x)=1$ 当且仅当 $x \in B, g(x)=0$ 当且仅当 $x \in A$, 此时再调整一个线性函数即可.
+
+\begin{remark}
+	作为类比, 局部紧致下的Urysohn引理或许更为有用, 这里局部紧已经暗含了Hausdorff性, 但事实上我们对于局部紧.
+
+	\hrulefill
+
+	引理(Urysohn, 局部紧空间). 对于局部紧空间 $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 且其中之一紧致, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
+	\[
+			f(A)=0, \quad f(B)=1.
+	\]
+\end{remark}
+
+证明. 不妨假设 $A$ 是紧致的, $B^c$ 是 $A$ 的邻域, 根据局部紧的假设, 存在开集 $V$ 使得 $A \subseteq V$ 且 $\bar{V}$ 是紧致的. 由于对于Hausdorff 紧致空间一定是正规的, 这样可以对 $A$ 和 $\partial V$ 用Urysohn引理, 有 $f(A)=0, f(\partial V)=1$, 只需要延拓 $f$ 使得在 $V$ 外 $f$ 取值为 1 就是满足条件的连续函数.
+
+\begin{remark}
+	一个自然的问题是上面的连续能否改为可微？这需要 $X$ 具有微分结构, 这里不妨假设是欧式空间. 如下的定理已经足够使用了, 这个定理使用了磨光这一技巧.
+
+	\hrulefill
+
+	引理(Urysohn, 光滑版本). 对于欧式空间 $\mathbb{R}^n$ 的两个分离的闭集 $A, B$, 如果其中之一是紧致的, 则他们可以被光滑函数分离, 具体来说, 存在光滑函数 $f: X \rightarrow[0,1]$ 使得
+	\[
+			f(A)=0, \quad f(B)=1.
+	\]
+\end{remark}
+证明. 考虑\linespread{0.5}\selectfont$f(x)=
+\begin{cases}
+	0                   & x \leq 0 \\
+	\mathrm{e}^{-1 / x} & x>0
+\end{cases}
+$\linespread{1.3}\selectfont, 不难验证, $f$ 是光滑函数. 考虑 $g(x)=\frac{f(x)}{f(x)+f(1-x)}$ 这也是光滑函数, 且满足 $g(0)=0$, $g(1)=1$. 对于 $a<b \leq c<d$, 记 $h(x)=\left\{
+\begin{array}{ll}g\left(\frac{x-a}{b-a}\right) & x \leq b \\ g\left(\frac{d-x}{d-c}\right) & b \leq x \leq d\end{array}
+\right.$, 这个函数光滑且在 $(a, d)$ 以外为 $0$, 在 $[b, c]$ 上为 $1$ , 方便起见记$[b, c] \leq h(x) \leq(a, d)$. 任意 $\epsilon$ 可以作 $\{0\} \leq h(x) \leq(-\epsilon, \epsilon)$, 再通过调整 $h$ 前的倍数可以使得存在光滑函数 $\chi_\epsilon^0$ 满足
+\[
+		\chi_\epsilon^0(x)>0 \Longleftrightarrow x \in(-\epsilon, \epsilon) \quad \int \chi_\epsilon^0=1
+\]
+则 $\chi_{\epsilon}\to \delta$, 作 $\chi_\epsilon\left(x^1, \ldots, x^n\right)=\chi_\epsilon^0(x^1) \ldots \chi_\epsilon^0(x^n)$, 则满足
+\[
+		\chi_\epsilon(x)>0 \Longleftrightarrow x \in(-\epsilon, \epsilon)^n \quad \int \chi_\epsilon=1
+\]
+
+在这里我们选 择距离 $d(x, y)=\sum\left|x_i-y_i\right|$, 选 择 $\epsilon>0$ 使得任意 $a \in A, b \in B$ 都有 $3 \epsilon<d(a, b)$. 记 $A^*=\{x: d(x, A) \leq \epsilon\}, B^*=\{x: d(x, B) \leq \epsilon\}$. 记 $i=1-1_{A^*}, 1_{A^*}$ 是 $A^*$ 的特征函数, 此时考虑
+\[
+		f\coloneq d(x, A)=\left(d * \chi_\epsilon\right)(x)=\int_{\mathbb{R}^n} i(x-t) \chi_\epsilon(t) \d t=\int_{(-\epsilon, \epsilon)^n} i(x-t) \chi_\epsilon(t) \d t
+\]
+
+注意到
+\begin{itemize}
+	\item $x \in A$ 意味着 $x-t \in A^*$, 此时 $d(x-t)=0$, 故 $f(x)=0$.
+	\item $x \in B$ 意味着 $x-t \in B^*$, 此时 $d(x-t)=1$, 故 $f(x)=1$.
+\end{itemize}
+
+下面再验证 $f(x)$ 光滑,
+\[
+		\frac{f(x+\Delta x)-f(x)}{\Delta x}=\int \frac{i(x+\Delta x-t)-i(x-t)}{\Delta x} \chi_\epsilon(t) \d t=\int \frac{\chi_\epsilon(x+\Delta x-t)-\chi_\epsilon(x-t)}{\Delta x} i(t) \d t
+\]
+
+因为 $\chi_\epsilon$ 光滑且只生活在一个紧致集上根据中值定理以及控制收敛定理, $\Delta x \rightarrow 0$ 和积分号可以交换顺序, 故
+\[
+		\frac{\mathrm{d}}{\mathrm{d} x} f(x)=\int i(t) \frac{\mathrm{d}}{\mathrm{d} x} \chi_\epsilon(x-t) \d t=\int i(x-t) \frac{\mathrm{d}}{\d t} \chi_\epsilon(t) \d t
+\]
+
+上式是一维情况, 当中 $\frac{\mathrm{d}}{\mathrm{d} x}$ 在高维可以换成任意偏微分算子, 换言之, 我们证明了 $f(x)$ 是光滑的.
+\begin{remark}
+	实际上这样得到的函数还可以对导数做一些估计.
+\end{remark}
+
+记 $\chi$ 为 $\mathbb{R}^n$ 在 $0$ 处取 $1,(-1,1)^n$ 外取 $0$ 且 $\|\chi\|_{L^1}=1$ 的光滑函数, 对于重指标 $\alpha$, 记一致范数 $\left\|\partial^\alpha \chi\right\|=C_\alpha$. 则 $\chi_\epsilon$ 可以取为 $\frac{\chi(x /
+	\epsilon)}{\epsilon^n}$, 故此时 $\left\|\partial^\alpha \chi_\epsilon\right\|=\frac{C_\alpha}{\epsilon^{|\alpha|+n}}$. 对于可测集合 $X$, 考虑
+\[
+		f(x)=\int\left(1-1_X\right)(x-t) \chi_\epsilon(t) \d t=\int_{(-\epsilon,\epsilon)^n}\left(1-1_X\right)(x-t) \chi_\epsilon \d t
+\]
+则
+\[
+		\left\|\partial^\alpha f\right\| \leq(2 \epsilon)^n\| \partial^\alpha \chi_\epsilon \| \leq \frac{2^n C_\alpha}{\epsilon^{|\alpha|}}
+\]
+
+这样, 对于紧致集 $A$, 闭集 $B$, Urysohn引理所作的光滑函数 $f$ 将满足 $\left\|\partial^\alpha f\right\| \leq \frac{2^n 3^{|\alpha|} C_\alpha}{d(A, B)^{|\alpha|}}$. 即对每个
+$\alpha$, 存在常数 $M_\alpha$ 使得
+\[
+		\left\|\partial^\alpha f\right\| \leq \frac{M_\alpha}{d(A, B)^{|\alpha|}}
+\]
+\begin{remark}
+	不过还有如下方法可以将定理做得更强.
+
+	\hrulefill
+
+	引理(Urysohn, 光滑版本). 对于欧式空间 $\mathbb{R}^n$ 的两个分离的闭集 $A, B$, 则他们可以被光滑函数完全分离, 具体来说, 存在光滑函数 $f: X \rightarrow[0,1]$ 使得
+	\[
+			f^{-1}(0)=A \quad f^{-1}(1)=B
+	\]
+\end{remark}
+证明. 采取的方法是对每个闭集 $A$ 找类似距离函数的光滑函数 $\partial(x, A) \geq 0$ 使得 $0$ 的原像就是 $A$, 然后为了达成要求只需要 $f(x)=\frac{\partial(x, A)}{\partial(x, A)+\partial(x, B)}$. 可以断言, 任何一个闭集 $A$ 都是可数个正方形 $\left\{x_i+\left(-\epsilon_i,
+\epsilon_i\right)^n\right\}$ 的并, 不妨假设 $\epsilon \leq 1$. 上面可以得到 $\chi$ 在 $0$ 处取
+$1,(-1,1)^n$ 外取 $0$ , 取 $C_n \geq 1$ 使得
+\[
+		\max _{|\alpha| \leq n}\left\|\partial^\alpha \chi\right\| \leq C_n
+\]
+
+作
+\[
+		\partial(x, A)=\sum_{i=1}^{\infty} \frac{\epsilon_i^i}{2^i C_i}
+		\chi\left(\frac{x-x_i}{\epsilon_i}\right)
+\]
+
+此时
+\[
+		\left|\partial^\alpha \partial(x)\right| \leq \sum_{i=1}^{\infty} \frac{\epsilon_i^{i-|\alpha|}}{2^i C_i}\left(\partial^\alpha \chi\right)\left|\left(\frac{x-x_i}{\epsilon_i}\right)\right| \leq
+		\sum_{i=1}^{|\alpha|}(\ldots)+\sum_{i=|\alpha|+1}^{\infty} \frac{1}{2^i}
+\]
+
+故各阶导数均一致收敛, 故 $\partial(x, A)$ 无限次可微. 而显然 $\partial(x, A)=0 \Longleftrightarrow x \in A$.
+
+\begin{remark}
+	下面是著名的Tietz扩张定理.
+
+	\hrulefill
+
+	定理(Tietz扩张). 如果 $X$ 是正规空间或度量空间, $A$ 是其中一个闭集(或 $X$ 是局部紧空间, $A$ 是紧致时), 则任何 $A$ 上的连续函数都可以延拓到整个 $X$ 上.
+\end{remark}
+
+证明. 设连续函数 $f: A \rightarrow \mathbb{R}$, 首先, 可以不妨假设 $f$ 是有界的, 否则可以 $\arctan$ 伺候. 不妨假设 $f(A) \subseteq[0,1]$. 因为 $A$ 是闭集(紧致集), 故 $[0,1]$ 的闭集的原像是 $X$ 的闭集(紧致集).
+\begin{itemize}
+	\item 根据Urysohn引理考虑取连续函数 $g_1: X \rightarrow[0,1 / 3]$ 分离 $B_1=f^{-1}[2 / 3,1]$ 和 $C_1=f^{-1}[0,1 / 3]$, 使得 $g_1\left(B_1\right)=1 / 3, g_1\left(C_1\right)=0$.
+	\item 再考虑 $f_2=f-\left.g_1\right|_A$, 此时 $f_2(A) \subseteq[0,2 / 3]$, 然后再取取连续函数 $g_2: X \rightarrow[0,(1 / 3)(2 / 3)]$ 分离 $B_2=f_2^{-1}\left[(2 / 3)^2, 2 / 3\right], C_2=f_2^{-1}[0,(1 / 3)(2 / 3)]$, 使得 $g_2\left(B_2\right)=(1 / 3)(2 / 3), g_2\left(C_2\right)=0$.
+	\item 再考虑 $f_3=f_2-\left.g_2\right|_A$, 此时 $f_3(A) \subseteq\left[0,(2 / 3)^2\right]$.
+
+			以此类推可以得到 $\left\{g_n\right\}_{n=1}^{\infty}$ 使得 $\left\|g_n\right\| \leq(1 / 3)(2 / 3)^{n-1},\left\|f-\sum_{i=1}^n g_i\right\|_A \leq(2 / 3)^n$, 换言之 $g=\sum_{i=1}^{\infty} g_i$ 一致收敛 (从而连续), 且在 $A$ 上 $f=g$. 这就完成了证明.
+\end{itemize}
+\begin{remark}
+	它有一个类似的命题
+
+	\hrulefill
+
+	对于 Hausdorff 空间 $Y$, $A$ 是 $X$ 的稠密子集, $f\colon A\to Y$ 是连续映射, 则至多存在一个连续扩张 $f\colon X\to Y$.
+\end{remark}
+
+另一方面, 如果 $A$ 不是闭集, 则我们不能期望所有 $A$ 上的连续函数都能扩张, 例如 $f(x)=\sin\left(1/(x-a)\right)$.
+
+类似地, 我们可以(保范地)扩张复值函数, 扩张 Lipschitz 函数, 甚至将光滑函数扩张为光滑函数.
+
+另一方面, 对于一般的拓扑空间 $Y$, 我们不能期望将闭子集 $A$ 上的任意连续函数 $f: A \rightarrow Y$ 都扩张为 $X$ 上的连续函数 $\tilde{f}: X \rightarrow Y$. 例如,
+\begin{enumerate}
+	\item 赋予 $\{0,1\}$ 离散拓扑. 为了将函数 $f:\{0,1\} \rightarrow Y$ 扩张为连续函数
+			\[
+					\tilde{f}:[0,1] \rightarrow Y,
+			\]
+			一个必要条件是: 存在一个连续函数 $\gamma:[0,1] \rightarrow Y$ 满足 $\gamma(0)=f(0), \gamma(1)=f(1)$.用后文第 3.2 节的语言, 我们需要 $f(0)$ 和 $f(1)$ 位于 $Y$ 的同一个道路连通分支中.
+	\item 为了将连续函数 $f: S^1 \rightarrow Y$ 扩张为连续函数 $\tilde{f}: D \rightarrow Y$, 其中 $D$ 是平面上的单位圆盘, 我们需要像集 $f\left(S^1\right)$ 在 $Y$ 中是 可缩的（这是一种更高级别的连通性）. 特别地, 我们将会看到恒等映射
+			\[
+					f: S^1 \rightarrow S^1, \quad x \mapsto x
+			\]
+			不能被扩张为连续映射 $\tilde{f}: D \rightarrow S^1$.
+			我们将在本书的后半部分深人研究这些连通性现象.
+\end{enumerate}
+
+\begin{remark}
+	下面可以来推导著名的单位分拆定理.
+
+	\hrulefill
+
+	定义(单位分拆). 对于拓扑空间 $X$, 对于连续函数 $f: X \rightarrow \mathbb{R}$, 记支集 $\operatorname{supp} f=\overline{\{x \in X: f(x) \neq 0\}}$. 对于开覆盖 $\left\{U_\alpha\right\}$ , 称一族函数 $\left\{\varphi_i\right\}$ 是 $\left\{U_\alpha\right\}$ 的单位分拆如果
+\end{remark}
+\begin{itemize}
+	\item 对任意 $i$, 存在 $\alpha$ 使得 $\operatorname{supp} \varphi_i \subseteq U_\alpha$.
+	\item 对每个 $x \in X$, 存在邻域 $U$ 使得 $\left\{i: U \cap \operatorname{supp} \varphi_i \neq \varnothing\right\}$ 是有限集. $\left(\operatorname{supp} \varphi_i\right.$ 局部有限)
+	\item 对任意 $x \in X$ 都有 $\sum_i \varphi_i(x)=1$, 以及 $\varphi_i(x) \geq 0$.
+\end{itemize}
+如果 $\varphi_i$ 都是光滑的, 就称之为光滑单位分拆.
+
+\begin{remark}
+	当然, 最为基本的就是紧致的情况.
+
+	\hrulefill
+
+	定理(单位分拆存在定理, 紧致版本). 对于Hausdorff紧致空间 $X$, 任意开覆盖总存在单位分拆.
+\end{remark}
+证明. 任意取开覆盖, 对于每一点 $x$, 假设开覆盖中 $x \in U_x$, 存在开集 $W_x, V_x$ 使得
+\[
+		x \in W_x \subseteq \overline{W_x} \subseteq V_x \subseteq \overline{V_x} \subseteq U_x
+\]
+
+此时 $\left\{W_x\right\}$ 还是开覆盖, 故存在有限覆盖 $\left\{W_{x_i}\right\}$. 此时根据Urysohn引理作 $\psi_i: X \rightarrow[0,1]$ 满足 $\varphi_i\left(\overline{W_{x_i}}\right)=1$ 且 $\varphi_i\left(V_{x_i}^c\right)=0$, 作 $\psi=\sum \varphi_i$, 因为 $\left\{W_{x_i}\right\}$ 是开覆盖, 故 $\psi \geq 1$, 故 $\varphi_i=\frac{\psi_i}{\psi} \geq 0$ 的支集 $\subseteq \overline{V_x} \subseteq U_x$, 且满足 $\sum \varphi_i=1$, 故满足条件.
+
+\begin{remark}
+	我们自然也不会放过光滑的版本.
+
+	\hrulefill
+
+	定理(单位分拆存在定理, 光滑版本). 对于流形 $M$ (假定C\textsubscript{2}), 任意开覆盖总存在光滑单位分拆.
+\end{remark}
+证明. 我们总可以找到可数的开集 $\left\{U_i\right\}$ 和紧致集 $F_i$ 使得
+\[
+		U_1 \subseteq F_1 \subseteq U_2 \subseteq F_2 \subseteq \ldots \quad \bigcup_{i=1}^{\infty} U_i=M
+\]
+
+只需要取可数拓扑基 $\left\{B_i\right\}$, 定义 $U_1=B_1, F_1=\overline{U_1}$, 找充分大的 $n$ 使得 $U_2=\bigcup_{i=1}^n U_i \supseteq F_1$ 以此类推. 这样 $\left\{U_{i+1} \backslash F_{i-1}\right\}$ 就是一个局部有限的可数开覆盖. 假设 $x \in U_i \backslash U_{i-1}$, 那么上面的证明中的 $V_x, W_x$ 不妨取在 $U_i \backslash F_{i-1}$ 之中. 他们形成 $F_i \backslash U_{i-2}$ 的开覆盖, 根据Lindelöf覆盖定理他们存在可数子覆盖, 不难验证选出的可数子覆盖满足“局部有限”的条件, 之后的证明都如愿以偿.
+
+\begin{remark}
+	下面我们来介绍“光滑”版本的延拓定理.
+
+	\hrulefill
+
+	定理(子流形延拓定理). 对于流形 $M$, 子流形 $N \subseteq M$ 上的光滑函数可以延拓到 $M$ 上.
+\end{remark}
+证明. 假设光滑函数是 $f$. 在某一点附近 $U$ 可以选择坐标卡使得 $N$ 的坐标恰好是 $M$ 坐标前几位(因为子流形要求非退化, $N$ 的坐标切映射可以延拓成一组基), 这样局部就得以延拓, 假设延拓为 $f_U$. 将这些局部收集起来得到 $U_i$. 作单位分拆 $\left\{\varphi_j\right\}$, 则在 $\operatorname{supp} \varphi_j \subseteq U_i$ 对某个 $i$, 作 $g_i=\varphi_i f_U$, 这是一个定义在整个 $M$ 上的光滑函数, 再做 $g=\sum g_i$, 这就为所求的光滑函数.
+
+至此, 可以我们可以说扩张定理的根基是Urysohn引理, Urysohn引理是扩张定理的特殊情况, 粗略来说Urysohn引理得到的函数就是连续 (光滑) 函数大背景下是对特征函数的替代, 通过特征函数组成简单函数(即他们的和)来逼近函数是一种约化的简单方法, 问题简单化之后变得能够解决, 同样的思想还被用于证明Riesz表示定理.
+
+Urysohn引理的进一步``用法''就是用于局部紧空间, 给一个邻域``搭台唱戏'', 这样导出的单位分拆得将局部的函数``连成一片'', 尽管他们在相交处可能是不同的,
+这足以看到单位分拆是微分流形上关于函数 (更广泛来说是场) 的``局部-整体''原理, 而如解析函数一类则无此性质, 这表明解析函数的刚性,
+这从侧面反映出光滑函数虽然比连续函数要求稍高一些, 但本质上还是足够``柔软''的.
+\begin{remark}
+	在实分析中, 我们有如下的 Lusin 定理, 它告诉我们 “可测函数在很大一个区域上是连续函数".
+
+	\hrulefill
+
+	定理 (Lusin). 设 $X$ 是局部紧Hausdorff空间, $\mu$ 是 $X$ 上的一个正则 Radon 测度. \footnote{即 $\mu$ 是一个定义在全体 Borel 集上的测度，满足以下三个条件：
+		\begin{itemize}
+			\item 对于紧集 $K$, 由 $\mu(K)<+\infty$;
+			\item 外正则性：对任意 Borel 集 $A$, 有 $\mu(A)=\inf \{\mu(U) \mid A \subset U, U$ 是开集 $\}$;
+			\item 内正则性：对任意 Borel 集 $A$, 有 $\mu(A)=\sup \{\mu(K) \mid K \subset A, K$ 是紧集 $\}$.
+		\end{itemize}
+	} 设 $f: X \rightarrow \mathbb{R}$ 是 $X$ 上的一个可测函数, 且存在具有有限测度的 Borel 集 $E$ 使得 $f$ 在 $E^c$ 上为 $0$ . 则对于任意 $\varepsilon>0$, 存在紧集 $K \subset E$ 使得 $\mu(E \backslash K)<\varepsilon$, 且 $f$ 在 $K$ 上连续.
+\end{remark}
+
+\begin{remark}
+	应用局部紧Hausdorff版本的 Tietze 扩张定理, 我们可以得到
+
+	\hrulefill
+
+	推论(连续函数几乎处处逼近可测函数). 在 Lusin 定理的假设下，存在一列紧支连续函数几乎处处收敛于 $f$.
+\end{remark}
+
+证明. 根据 Lusin 定理, 存在满足条件 $\mu(E \backslash K)<\varepsilon$ 的紧集 $K \subset E$, 使得 $f$ 在 $K$ 上连续.由局部紧Hausdorff空间的 Tietze 扩张定理, 存在 $g \in \mathcal{C}_c(X, \mathbb{R})$ 使得 $\left.g\right|_K=f$. 另一方面,由外正则性，存在开集 $U \supset E$ 使得
+\[
+		\mu(U \backslash E)<\varepsilon .
+\]
+对于紧集 $K$ 跟闭集 $U^c$ 应用局部紧Hausdorff空间的 Urysohn 引理, 可得连续函数 $h \in \mathcal{C}_c(X, \mathbb{R})$ 使得
+\[
+		h(K)=1, \quad h\left(U^c\right)=0 .
+\]
+于是, 对任意 $\varepsilon>0$, 我们得到紧支连续函数 $g h \in \mathcal{C}_c(X, \mathbb{R})$ 使得
+\[
+		\mu(\{x \mid g(x) h(x) \neq f(x)\})<2 \varepsilon .
+\]
+
+最后分别取 $\varepsilon=\frac{1}{n}$, 我们得到一列紧支连续函数 $g_n$ 依测度收敛于 $f$. 再由 Riesz 定理, $g_n$有子列几乎处处收敛于 $f$.
+
+最后是一个具有趣味性的例子, 涉及到 Cantor 集
+\[
+C=[0,1] \backslash \bigcup_{n=1}^{\infty} \bigcup_{k=0}^{3^{n-1}-1}\left(\frac{3 k+1}{3^n}, \frac{3 k+2}{3^n}\right) .
+\]
+可以证明映射
+\[
+g:\{0,1\}^{\mathbb{N}} \rightarrow C \subset[0,1], \quad a=\left(a_1, a_2, \cdots\right) \mapsto \sum_{k=1}^{\infty} \frac{2}{3^k} a_k
+\]
+是从 $\left(\{0,1\}^{\mathbb{N}}, \mathscr{T}_{\text {product }}\right)$ 到 Cantor 集 $C$ 的同胚, 且映射
+\[
+h:\{0,1\}^{\mathbb{N}} \rightarrow[0,1]^2, \quad a=\left(a_1, a_2, \cdots\right) \mapsto\left(\sum_{k=1}^{\infty} \frac{a_{2 k-1}}{2^k}, \sum_{k=1}^{\infty} \frac{a_{2 k}}{2^k}\right)
+\]
+是一个连续满射. 于是, 我们得到一个连续满射
+\[
+h \circ g^{-1}: C \rightarrow[0,1]^2 .
+\]
+由于 $C$ 在 $[0,1]$ 中是闭集, 因此由 Tietze 扩张定理, 存在一个连续满射
+\[
+f:[0,1] \rightarrow[0,1]^2 .
+\]
+一般而言, 我们把从 $[0,1]$ 到拓扑空间的连续映射叫做曲线, 于是我们得到了一条填满单位正方形的曲线! 这种能填满正方形的曲线最早是 Peano 在 1890 年发现的:
+\newgeometry{left = 0.8cm, right = 0.8cm}
+\section{拓扑空间的紧性}
 \begin{center}{\bf\Huge{WHAT IS ``LOCALLY COMPACT''?
 		}}\\
 	{\scshape{Raghu R. Gompa\\Indiana University at Kokomo}}
@@ -29,13 +347,13 @@
 		Each textbook in Topology has its own way of defining what it means for a space to be locally compact. Some authors make an effort to give an equivalent characterization under some additional assumptions about the topological space (see [2]). Essentially there are four wncepts with the name of local compactness and the relations among these have been only partially studied. Even though local compactness, by its very title, is a local property (recall that a property is said to be local if it can be specified for any single point in the space), there has been only global study (that is, a study of the spaces where the property is assumed for every point in the space) of it in the literature. In this paper, we study it locally at a point. Implications among these concepts will be discussed at a particular point. Moreover, we present examples to help understand the impossibility of reverse implications.
 	\end{en}
 	\begin{cn}
-		拓扑学的每本教科书都有自己的方法来定义空间局部紧的含义。有些作者试图在拓扑空间的一些额外假设下给出等效的表征（见[2]）。本质上，有四个概念被称为局部紧性，而这些概念之间的关系只得到了部分研究。尽管局部紧性从其名称上看就是一个局部性质（回顾一下，如果一个性质可以为空间中的任何一点所指定，那么就可以说它是局部的），但文献中对它的研究只有全局性的（即对空间中的每一点都假定具有该性质的空间的研究）。在本文中，我们研究的是某一点的局部性质。我们将在某一点上讨论这些概念之间的含义。此外，我们还将举出反向推导不可能的反例。
+		拓扑学的每本教科书都有自己的方法来定义空间局部紧的含义. 有些作者试图在拓扑空间的一些额外假设下给出等效的表征(见[2]). 本质上, 有四个概念被称为局部紧性, 而这些概念之间的关系只得到了部分研究. 尽管局部紧性从其名称上看就是一个局部性质(回顾一下, 如果一个性质可以为空间中的任何一点所指定, 那么就可以说它是局部的), 但文献中对它的研究只有全局性的(即对空间中的每一点都假定具有该性质的空间的研究). 在本文中, 我们研究的是某一点的局部性质. 我们将在某一点上讨论这些概念之间的含义. 此外, 我们还将举出反向推导不可能的反例.
 	\end{cn}
 	\begin{en}
 		Throughout this paper $X$ represents an arbitrary topological space and $x$ denotes a fixed point of X. Schnare [3] discussed two definitions of local compactness, which are rephrased here to define them as properties of space $X$ at a point $x$ as follows: A topological space $X$ is called weakly locally compact, or simply w-compact, at $x$ iff there is a compact neighborhood of $x$ in the space X. $X$ is called mildly locally compact, or m-compact, at $x$ iff there is a neighborhood of $x$ whose closure is compact. A topological space is said to be 1-compact iff it is 1-compact at each of its points where $1$ is ``w'', ``m'', or any other letter that makes sense in the following discussion. Schnare [3] showed that a w-compact space is m-compact iff the closure of any compact set is compact. Later, Gross [4] introduced a third definition of local compactness, which is modified here as a property at a particular point $x$. A space $X$ is called bit locally compact, or b-compact, at $x$ iff each neighborhood of $x$ contains a compact neighborhood of $x$.
 	\end{en}
 	\begin{cn}
-		本文中，$X$代表任意拓扑空间，$x$表示$X$的一个定点。Schnare[3]讨论了局部紧性的两个定义，在此将其重新表述，定义为在点$x$上空间$X$的性质如下：拓扑空间 $X$ 被称为在 $x$ 处\emph{弱局部紧，或简称为w-compact，当且仅当在空间$X$中存在$x$的紧邻域。}$X$被称为在$x$处\emph{局部微紧或m-compact，当且仅当存在 $x$的邻域，其闭包是紧的。}如果在1是``w''，``m''或任何其他在下面的讨论中有意义的字母时，拓扑空间在它的每个点上都是1-紧的，那么这个拓扑空间就被称为1-紧空间。Schnare[3]证明，如果任意紧集的闭包是紧的，那么一个w-compact空间就是m-compact的。后来，Gross[4]引入了局部紧性的第三个定义，这里将其修改为特定点$x$的属性。\emph{如果$x$的每个邻域都包含$x$的一个紧邻域，那么$X$空间在$x$处被称为局部稍紧或b-compact。}
+		本文中, $X$代表任意拓扑空间, $x$表示$X$的一个定点. Schnare[3]讨论了局部紧性的两个定义, 在此将其重新表述, 定义为在点$x$上空间$X$的性质如下：拓扑空间 $X$ 被称为在 $x$ 处\emph{弱局部紧, 或简称为w-compact, 当且仅当在空间$X$中存在$x$的紧邻域. }$X$被称为在$x$处\emph{局部微紧或m-compact, 当且仅当存在 $x$的邻域, 其闭包是紧的. }如果在1是``w'', ``m''或任何其他在下面的讨论中有意义的字母时, 拓扑空间在它的每个点上都是1-紧的, 那么这个拓扑空间就被称为1-紧空间. Schnare[3]证明, 如果任意紧集的闭包是紧的, 那么一个w-compact空间就是m-compact的. 后来, Gross[4]引入了局部紧性的第三个定义, 这里将其修改为特定点$x$的属性. \emph{如果$x$的每个邻域都包含$x$的一个紧邻域, 那么$X$空间在$x$处被称为局部稍紧或b-compact. }
 	\end{cn}
 \end{paracol}
 
@@ -44,7 +362,7 @@
 		It is well known that all these wncepts are equivalent in Hausdorff spaces and regular spaces. In fact, in such spaces, these are equivalent to one more concept called strongly locally compact. X is said to be strongly locally compact, or s-compact, at $x$ iff each neighborhood of $x$ contains a compact closed neighborhood of $z$. The particular choice of terminology becomes apparent after observing that s-compact is strongest, w-compact is the weakest, and b-compact, m-compact lie in between for any general spaces. That is, we have the following implications in any general topological space $X$ at the point $x$ :
 	\end{en}
 	\begin{cn}
-		众所周知，所有这些概念在Hausdorff空间和正则空间中都是等价的。事实上，在这些空间中，这些概念等价于另一个概念，即强局部紧。如果$x$的每个邻域都包含$x$的紧闭邻域，那么我们就说$X$在$x$处是强局部紧的，或者说是s-compact的。在观察到对于任何一般空间，s-compact是最强的，w-compact是最弱的，而b-compact和m-compact介于两者之间之后，术语的特殊选择就变得显而易见了。也就是说，在任何一般拓扑空间$X$中，我们在点$x$上都有如下结果：
+		众所周知, 所有这些概念在Hausdorff空间和正则空间中都是等价的. 事实上, 在这些空间中, 这些概念等价于另一个概念, 即强局部紧. 如果\emph{$x$的每个邻域都包含$x$的紧闭邻域, 那么我们就说$X$在$x$处是强局部紧的, 或者说是s-compact的. }在观察到对于任何一般空间, s-compact是最强的, w-compact是最弱的, 而b-compact和m-compact介于两者之间之后, 术语的特殊选择就变得显而易见了. 也就是说, 在任何一般拓扑空间$X$中, 我们在点$x$上都有如下结果：
 	\end{cn}
 \end{paracol}
 \[
@@ -61,13 +379,13 @@
 	\end{en}
 	\begin{cn}
 		\noindent
-		这些含义是推导的。此外，在一般拓扑空间中，b-compact和m-compact是不可比较的。
+		这些含义是推导的. 此外, 在一般拓扑空间中, b-compact和m-compact是不可比较的.
 	\end{cn}
 	\begin{en}
-		Even though compact spaces are obviously m-compact (and thus w-compact), compactness does not imply either s-compactness or b-compactness. Consider the one-point compactification of the space $\symbb Q$ of rational numbers. This is a $T_{1\frac{1}{2}}$-space (a space in which each compact set is closed). It can be shown that it is neither s-compact nor b-compact. This example also tells us that even in compact $T_{1 \frac{1}{2}}$-spaces
+		Even though compact spaces are obviously m-compact (and thus w-compact), compactness does not imply either s-compactness or b-compactness. Consider the one-point compactification of the space $\symbb Q$ of rational numbers. This is a $T_{1\frac{1}{2}}$-space (a space in which each compact set is closed). It can be shown that it is neither s-compact nor b-compact. This example also tells us that even in compact T\textsubscript{\!$1$½}-spaces
 	\end{en}
 	\begin{cn}
-		尽管紧空间显然是m-compact的（因此也是w-compact的），但紧性并不意味着s-compact性或b-compact性。考虑一下有理数空间$\BbbQ$的单点紧化。这是一个$T_{1\frac{1}{2}}$空间（每个紧集都是封闭的空间）。可以证明它既不是s-compact也不是b-compact。这个例子还告诉我们，即使在紧的$T_{1\frac{2}{2}}$空间中在$x$处
+		尽管紧空间显然是m-compact的(因此也是w-compact的), 但紧性并不意味着s-compact性或b-compact性. 考虑一下有理数空间$\BbbQ$的单点紧化. 这是一个$T_{1\frac{1}{2}}$空间(每个紧集都是封闭的空间). 可以证明它既不是s-compact也不是b-compact. 这个例子还告诉我们, 即使在紧的$T_{1\frac{2}{2}}$空间中在$x$处
 	\end{cn}
 \end{paracol}
 \[
@@ -76,7 +394,7 @@
 		\end{tikzcd}
 \]
 \begin{remark}
-	此处单点紧化采用 Alexandroff extension，也即对于一个拓扑空间 $X$，取 $X^*=X\sqcup\{\,\infty\,\}$，继承 $X$ 的全部开集，同时有开集 $V=(X\setminus C)\sqcup\{\,\infty\,\}$，其中 $C$ 是闭紧集。
+	此处单点紧化采用 Alexandroff extension, 也即对于一个拓扑空间 $X$, 取 $X^*=X\sqcup\{\,\infty\,\}$, 继承 $X$ 的全部开集, 同时有开集 $V=(X\setminus C)\sqcup\{\,\infty\,\}$, 其中 $C$ 是闭紧集.
 
 	则 $\BbbQ$ 是一个 $T_{1\frac{1}{2}}$ 空间, 对于一个紧集 $C\subseteq \BbbQ$, 如果 $\infty\not\in C$, 则 $C$ 也是 $\BbbQ$ 中的紧集, $C\cup\{\,\infty\,\}\setminus C$ 是 $C^*$ 中的开集. 如果 $\infty\in C$, 且 $\mathbb{Q} \backslash C$ 不是开集, 则 $\mathbb{Q} \cap C$ 在 $\mathbb{Q}$ 非闭, 存在点 $x \in \mathbb{Q} \backslash C$ 和 $\mathbb{Q} \cap C$ 中的序列 $\left\{\,x_n\,\right\}\to x$. 集合 $K=\{\,x\,\} \cup\left\{\,x_n\,\right\}$ 是 $\mathbb{Q}$ 中的紧集. $\{\,\mathbb{Q}^* \backslash K\,\} \cup\left\{\,(\mathbb{Q} \backslash K) \cup\left\{\,x_n\,\right\}\,\right\}$ 是紧集 $C$ 的覆盖, 但不能缩成有限项.
 \end{remark}
@@ -87,12 +405,12 @@
 				\frac{1}{2}}$-spaces. In fact, this implication holds even under a weaker assumption on
 		the topological space. To explain this assumption, we need the following definition. A
 		space is called an R-space iff the closure of a compact set is compact. Clearly any
-		regular or $T_{1 \frac{1}{2}}$-(hence $T_{2}$-) space is an R-space. since
+		regular or T\textsubscript{\!$1$½}-(hence $T_{2}$-) space is an R-space. since
 		m-compactness at $x$ is equivalent to the statement that there is a compact
 		closed neighborhood of $x$ in $X$, it is immediate that in any R-space
 	\end{en}
 	\begin{cn}
-		\noindent 然而，在T\textsubscript{\!$1$½}空间中，b-compact肯定意味着m-compact。事实上，即使在拓扑空间的较弱假设下，这一蕴涵也是成立的。为了解释这个假设，我们需要下面的定义。如果一个紧集的闭包是紧的，那么这个空间就叫做R空间。显然，任何正则或$T_{1\frac{1}{2}}$-（即$T_{2}$-）空间都是R空间。由于$z$处的m-compact性等价于$X$中存在$x$的紧闭邻域这一声明，因此在任何R空间中，都可以立即得出$x$处
+		\noindent 然而, 在T\textsubscript{\!$1$½}空间中, b-compact肯定意味着m-compact. 事实上, 即使在拓扑空间的较弱假设下, 这一蕴涵也是成立的. 为了解释这个假设, 我们需要下面的定义. 如果一个紧集的闭包是紧的, 那么这个空间就叫做R空间. 显然, 任何正则或$T_{1\frac{1}{2}}$-(即$T_{2}$-)空间都是R空间. 由于$z$处的m-compact性等价于$X$中存在$x$的紧闭邻域这一声明, 因此在任何R空间中, 都可以立即得出$x$处
 	\end{cn}
 \end{paracol}
 \[
@@ -106,110 +424,109 @@
 		Gross [4] has an example of a b-compact normal space which is not m-compact.
 		An easy example is the following: Consider an infinite set $X$ with a
 		distinguished point $x$ in which a set is declared to be open if is either
-		empty or it contains $x$. This is a $T_0$-space (a space in which
+		empty or it contains $x$. This is a T\textsubscript{\!0}-space (a space in which
 		distinct points have distinct closures) which is b-compact at $x$ but not
 		m-compact.
 	\end{en}
 	\begin{cn}
-		当然，在一般空间中，b-compact 并不意味着m-compact。Gross[4]举了一个 b-compact正规空间不m-compact的例子。下面是一个简单的例子：考虑一个有区分点 $x$ 的无穷集 $X$，其中如果一个集如果是空的或者包含 $x$，那么这个集就是开的。这是一个 $T_0$ 空间（在这个空间里，不同的点有不同的闭合），它在 $x$ 处是 b-compact 的，但不是 m-compact 的。
+		当然, 在一般空间中, b-compact 并不意味着m-compact. Gross[4]举了一个 b-compact正规空间不m-compact的例子. 下面是一个简单的例子：考虑一个有区分点 $x$ 的无穷集 $X$, 其中如果一个集如果是空的或者包含 $x$, 那么这个集就是开的. 这是一个 T\textsubscript{\!0} 空间(在这个空间里, 不同的点有不同的闭合), 它在 $x$ 处是 b-compact 的, 但不是 m-compact 的.
 	\end{cn}
 	\begin{en}
 		An infinite set with cofinite topology reveals that even in compact, $T_1$- and R-spaces
-		
+
 	\end{en}
 	\begin{cn}
-		一个具有余有限拓扑的无穷集揭示出，即使在紧的、$T_1$-和 R-空间中
+		一个具有余有限拓扑的无穷集揭示出, 即使在紧的、$T_1$-和 R-空间中
 	\end{cn}
 \end{paracol}
-		\[
-				\text { b- and m-compact } \not\longrightarrow \text { s-compact at } x \text {. }
-		\]
+\[
+		\text { b- and m-compact } \not\longrightarrow \text { s-compact at } x \text {. }
+\]
 \begin{paracol}{2}
 	\begin{en}
-		But in-compact and s-compact at $x$ are equivalent in a topological space which is $T_2$ at $x$. A space $X$ is called $T_2$ at $x$ iff for any point y of $X$ different from $x$, there exist two disjoint open sets $G$ and $H$ in $X$ containing $y$ and $x$, respectively. It is easy to verify that a topological space $X$ is $T_2$ at a point $x$ iff to each compact set A not containing $x$ there correspond two disjoint open sets $L$ and m such that $A \subseteq L$ and $x \in M$.
+		But in-compact and s-compact at $x$ are equivalent in a topological space which is T\textsubscript{\!$2$} at $x$. A space $X$ is called T\textsubscript{\!$2$} at $x$ iff for any point y of $X$ different from $x$, there exist two disjoint open sets $G$ and $H$ in $X$ containing $y$ and $x$, respectively. It is easy to verify that a topological space $X$ is T\textsubscript{\!$2$} at a point $x$ iff to each compact set A not containing $x$ there correspond two disjoint open sets $L$ and m such that $A \subseteq L$ and $x \in M$.
 	\end{en}
 	\begin{cn}
-		但是在拓扑空间中，$x$的in-compact和s-compact等价于$x$的$T_2$。如果对于$X$中不同于$x$的任意点y，在$X$中存在两个不相交的开集$G$和$H$，分别包含$y$和$x$，那么在$x$处的$X$空间被称为$T_2$。很容易验证拓扑空间 $X$ 在点 $x$ 上是 $T_2$，如果对每个不包含 $x$ 的紧集合 A 来说，有两个不相交的开集 $\boldsymbol{L}$ 和 m 对应，使得 $A \subseteq L$ 和 $x 6 M$.
+		但是在拓扑空间中, $x$的in-compact和s-compact等价于$x$的T\textsubscript{\!$2$}. 如果对于$X$中不同于$x$的任意点y, 在$X$中存在两个不相交的开集$G$和$H$, 分别包含$y$和$x$, 那么在$x$处的$X$空间被称为T\textsubscript{\!$2$}. 很容易验证拓扑空间 $X$ 在点 $x$ 上是 T\textsubscript{\!$2$}, 如果对每个不包含 $x$ 的紧集合 A 来说, 有两个不相交的开集 $ L$ 和 m 对应, 使得 $A \subseteq L$ 和 $x 6 M$.
 	\end{cn}
 	\begin{en}
 		Let us show that if $X$ is $T_{\mathbf{2}}$ at $x$ and
 		m-compact at $x$ then it is s-compact at $x$. Let
 		$G$ by any open set containing $z$. Let $N$ be a compact
 		closed neighborhood of $x$ (by m-compactness at $x, N$
-		exists). Write $A=N \cap G^{\prime}$, where $G^{\prime}$ represents the
+		exists). Write $A=N \cap G'$, where $G'$ represents the
 		complement of $G$. Clearly A is a closed subset of the compact space
 		$N$ and hence compact. Since $x \notin A$ and $X$
-		is $T_2$ at $x$, there are disjoint open sets $\boldsymbol{L}$
-		and $\boldsymbol{M}$ such that $A \subseteq \boldsymbol{L}$ and $x
-		\in M$. Now $\boldsymbol{M} \subseteq \boldsymbol{L}^{\prime}$ and
-		
+		is T\textsubscript{\!$2$} at $x$, there are disjoint open sets $ L$
+		and $M$ such that $A \subseteq  L$ and $x
+		\in M$. Now $M \subseteq  L'$ and
+
 	\end{en}
 	\begin{cn}
-		我们证明如果 $X$ 在 $x$ 处是 T\textsubscript{\!$2$} 并且在 $x$ 处是 mompact 的，那么在 $x$ 处就是 mompact 的。
-		那么它在 $x$ 是 s-compact 的。让
-		$G$ 是包含 $z$ 的任意开集。让 $N$ 是一个紧的
-		的封闭邻域（根据 $x 的 m-compactness, N$
-		存在）。写 $A=N \cap G^{prime}$，其中$G^{\prime}$表示
-		的补集。显然，A 是紧空间的一个封闭子集
-		因此是紧的。因为 $x \not\in A$ 中，并且 $X$
-		在 $x$ 是 $/boldsymbol{T}_2$，所以有不相交的开集 $\boldsymbol{L}$
-		和 $\boldsymbol{M}$ 这样的 $A \subseteq \boldsymbol{L}$ 并且 $x
-		在 M$ 中。现在 $\boldsymbol{M} \subseteq\boldsymbol{L}^{\prime}$）和
+		我们证明如果 $X$ 在 $x$ 处是 T\textsubscript{\!$2$} 并且在 $x$ 处是 mompact 的, 那么在 $x$ 处就是 mompact 的.
+		那么它在 $x$ 是s-compact的.让
+		$G$是包含$z$的任意开集.让$N$是一个紧的
+		的封闭邻域(根据$x$的m-compactness,$N$
+		存在).写$A=N\cap G'$, 其中$G'$表示的补集.显然, A是紧空间的一个封闭子集
+		因此是紧的.因为$x\not\in A$中, 并且$X$	在$x$是T\textsubscript{$\!2$}, 所以有不相交的开集$L$和$M$这样的$A\subseteq L$并且$x
+		\in M$中. 现在 $M \subseteq L'$并且
 	\end{cn}
 \end{paracol}
 \[
-	\bar{M} \subseteq L^{\prime} \subseteq A^{\prime}=N^{\prime} \cup G
+		\bar{M} \subseteq L' \subseteq A'=N' \cup G
 \]
-
 \begin{paracol}{2}
 	\begin{en}
-		(the bar indicates the closure of the set), which means $\bar{M} \cap N \subseteq G$. Thus $\boldsymbol{H}=M \cap N^{\circ}\left(N^{\circ}\right.$ is the interior of $N$ ) is an open set containing $x$ and
+		(the bar indicates the closure of the set), which means $\bar{M} \cap N \subseteq G$. Thus $H=M \cap N^{\circ}$($N^{\circ}$ is the interior of $N$ ) is an open set containing $x$ and
 
 	\end{en}
-		
 	\begin{cn}
-		(条形表示集合的闭包），这意味着 $\bar{M} \cap N \subseteq G$。因此 $\boldsymbol{H}=M \cap N^{\circ}\left(N^{\circ}\right.$ 是 $N$ 的内部) 是一个包含 2 的开集，并且
+		(板表示集合闭包), 这意味着 $\bar{M} \cap N \subseteq G$. 因此 $H=M \cap N^{\circ}$ ($N^{\circ}$ 是 $N$ 的内部) 是一个包含 $2$ 的开集, 并且
 	\end{cn}
 \end{paracol}
-	\[
-	\bar{H} \subseteq \bar{M} \cap \bar{N}=\bar{M} \cap N \subseteq G .
+\[
+		\bar{H} \subseteq \bar{M} \cap \bar{N}=\bar{M} \cap N \subseteq G .
 \]
 \begin{paracol}{2}
-
 
 	\begin{en}
 		Moreover, $\bar{H}_1$ being a closed subset of compact set $N$, is compact. This shows
 		that $X$ is s-compact at $x$.
 	\end{en}
 	\begin{cn}
-		此外，$\bar{H}_1$ 作为紧集 $N$ 的闭子集，是紧的。这表明	$X$ 在 $x$ 是 s-compact 的。
+		此外, $\bar{H}_1$ 作为紧集 $N$ 的闭子集, 是紧的. 这表明	$X$ 在 $x$ 是 s-compact 的.
 	\end{cn}
 	\begin{en}
 		At this point note that, for any R-space
-		that is $T_2$ at $x$ the implications
-		\[
-				\text { w-compact } \longrightarrow \text { m-compact } \longrightarrow \text { s-compact }
-		\]
-		hold at $x$, hence all compactness concepts are equivalent. Notice that a space which is	s-compact at $x$ is regular at $x$; that is, to each open set $G$ containing $x$ there
-		corresponds an open set $H$ such that $x \in H\subseteq	\overrightarrow{H}\subseteq G$. In fact, this property of the space assures
-		the equivalence of all these concepts. To prove this, let us assume that $X$ is w-compact
-		at $x$ and regular at $x$. We show that $X$ is s-compact at $x$. Let $G$ be any open set
-		containing $z$. Since $X$ is w-compact at $x$, there is a compact neighborhood $N$ of
-		$x$. Put $A=G \cap N^{\circ}$. Then by regularity at $z$, there exists an open set
-		$H$ such that
-
+		that is T\textsubscript{\!$2$} at $x$ the implications
 	\end{en}
 	\begin{cn}
-		此外，$\bar{H}_1$ 作为紧集 $N$ 的闭子集，是紧的。这表明在 $z$ 处 $X$ 是 s-compact 的。此时请注意，对于任何 R 空间在 $x$ 处为 $T_2$ 的含义是
-		\[
-				\text { W-compact } \longrightarrow \text { m-compact } \longrightarrow \text { s-compact }
-		\]
-		在 $x$ 处成立，因此所有紧性概念都是等价的。注意在 $x$ 是s-compact的空间在$x$是正则的；也就是说，对于每个开集每个包含$x$的开集都对应着一个开集$H$这样的$x \in H$）中 $\subseteq	H \subseteq G$。事实上，空间的这一属性空间的这一属性保证了所有这些概念的等价性。为了证明这一点，让我们假设$X$ 在 $x$ 处是 w-compact 的，在$x$处是规则的。我们证明$X$在$x$是s-compact的。让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的，所以$x$有一个紧的邻域$N$。设$A=G\cap N^{\circ}$.那么根据$x$的正则性，存在一个开集$H$，使得
+		此时请注意, 对于任何 R-空间在 $x$ 处为 T\textsubscript{\!$2$} 的含义是
 	\end{cn}
 \end{paracol}
-		\[
-				x \in H \subseteq \bar{H} \subseteq A .
-		\]
+\[
+		\text { w-compact } \longrightarrow \text { m-compact } \longrightarrow \text { s-compact }
+\]
+\begin{paracol}{2}
+	\begin{en}
+		\noindent
+		hold at $x$, hence all compactness concepts are equivalent. Notice that a space which is
+		s-compact at $x$ is regular at $x$; that is, to each open set $G$ containing $x$ there
+		corresponds an open set $H$ such that $x \in H\subseteq \overrightarrow{H}\subseteq G$.
+		In fact, this property of the space assures the equivalence of all these concepts. To
+		prove this, let us assume that $X$ is w-compact at $x$ and regular at $x$. We show that
+		$X$ is s-compact at $x$. Let $G$ be any open set containing $z$. Since $X$ is w-compact
+		at $x$, there is a compact neighborhood $N$ of $x$. Put $A=G \cap N^{\circ}$. Then by
+		regularity at $z$, there exists an open set $H$ such that
+	\end{en}
+	\begin{cn}
+		\noindent
+		在 $x$ 处成立, 因此所有紧性概念都是等价的. 注意在 $x$ 是s-compact的空间在$x$是正则的; 也就是说, 对于每个开集每个包含$x$的开集都对应着一个开集$H$这样的$x \in H$中 $\subseteq	H \subseteq G$. 事实上, 空间的这一属性空间的这一属性保证了所有这些概念的等价性. 为了证明这一点, 让我们假设$X$ 在 $x$ 处是 w-compact 的, 在$x$处是规则的. 我们证明$X$在$x$是s-compact的. 让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的, 所以$x$有一个紧的邻域$N$. 设$A=G\cap N^{\circ}$.那么根据$x$的正则性, 存在一个开集$H$, 使得
+	\end{cn}
+\end{paracol}
+\[
+		x \in H \subseteq \bar{H} \subseteq A .
+\]
 \begin{paracol}{2}
 	\begin{en}
 		Clearly $\bar{H}$ is compact (because a closed subset of a compact space is compact) and
@@ -218,232 +535,69 @@
 		R-property, or Hausdorff spaces.
 	\end{en}
 	\begin{cn}
-		显然 $\bar{H}$ 是紧的（因为紧空间的封闭子集是紧的），并且
-		$\bar{H} \subseteq$. 因此 $mathrm{X}$ 在 $x$ 是 s-compact 的。因此所有这些
-		在$x$处是规则的，在$z$处的$T_2$具有
-		或 Hausdorff 空间。\end{cn}
+		显然 $\bar{H}$ 是紧的(因为紧空间的封闭子集是紧的), 并且
+		$\bar{H} \subseteq$. 因此 $X$ 在 $x$ 是 s-compact 的. 因此所有这些在$x$处是规则的, 在$z$处的T\textsubscript{\!$2$}具有
+		或 Hausdorff 空间. \end{cn}
 
 	\begin{en}
 		We close our discussion with an analysis of some of the standard properties of local
 		compact spaces. Clearly any local compactness is $x$ is closed hereditary
 		(i.e., preserved under closed subspaces). However, only s-and b-compactness are open
 		hereditary (i.e., preserved under open subspaces). The one point compactification of the
-		space $\mathrm{Q}$ is m-compact (hence w-compact) in which the open set
-		$\mathrm{Q}$ is neither m-compact nor $\mathrm{w}$-compact. A w-compact dense
-		subset B of a $T_{1 \frac{1}{\frac{1}{2}}}$-space $X$ is open.
-		Indeed, suppose $\mathbf{b} \in \mathbf{B}$. Since $\mathbf{B}$ is w-compact, there exist
-		a compact subset $\mathbf{C}$ of $\mathrm{B}$ and an open subset $\mathrm{G}$ of
+		space $\BbbQ$ is m-compact (hence w-compact) in which the open set
+		$\BbbQ$ is neither m-compact nor w-compact. A w-compact dense
+		subset B of a T\textsubscript{\!$1$½}-space $X$ is open.
+		Indeed, suppose $b \in B$. Since $B$ is w-compact, there exist
+		a compact subset $C$ of $B$ and an open subset $\mathrm{G}$ of
 		$X$ such that $\mathrm{b} \in B \cap G \subseteq \mathrm{C}$. $C$ is closed in
-		$X$, because $X$ is a $T_{1 \frac{1}{2}}$-space. Since $\mathrm{B}$ is
+		$X$, because $X$ is a T\textsubscript{\!$1$½}-space. Since $\mathrm{B}$ is
 		dense in $X$ and $\mathrm{G}$ is open in $X, \bar{G}=\overline{B \cap
 			G}$. Thus
 
 	\end{en}
 	\begin{cn}
-		最后，我们将分析局部紧空间的一些标准性质。
-		紧空间的一些标准性质。显然，任何局部紧性$x$都是封闭遗传的（即在封闭子空间下保存）。
-		(即在封闭子空间下保存）。然而，只有 s-compactness 和 b-compactness 是开的
-		遗传（即在开放子空间下保留）。空间
-		空间 $\mathrm{Q}$ 的一点紧性是 m 紧性（因此是 w-compact性），其中的开集
-		$mathrm{Q}$既不是 m-compact 也不是 $\mathrm{w}$-compact. 一个
-		空间 $X$ 的 w-compact 密子集 B 是开的。
-		事实上，假设 $\mathbf{b}$ 在 $mathbf{B}$ 中。由于 $\mathbf{B}$ 是 w-compact的，所以存在
-		$\mathrm{B}$ 的一个紧子集 $\mathbf{C}$ 和 $X$ 的一个开放子集 $\mathrm{G}$ 。
-		$mathrm{X}$ 使得 $\mathrm{b} \in B \cap G \subseteq \mathrm{C}$。$C$在
-		因为 $X$ 是一个 $T_{1 \frac{1}{2}}$ 空间。因为 $\mathrm{B}$ 是
-		在 $X$ 中是密集的，而 $\mathrm{G}$ 在 $X$ 中是开的，所以 $\bar{G}=\overline{B \cap
+		最后, 我们将分析局部紧空间的一些标准性质.
+		紧空间的一些标准性质. 显然, 任何局部紧性$x$都是封闭遗传的(即在封闭子空间下保存).
+		(即在封闭子空间下保存). 然而, 只有 s-compactness 和 b-compactness 是开遗传的(即在开子集下保留). 空间
+		空间 $\BbbQ$ 的一点紧化是m-compact性(因此是 w-compact性), 其中的开集
+		$\BbbQ$既不是 m-compact 也不是 w-compact. 一个空间 $X$ 的 w-compact 密子集 B 是开的.
+		事实上, 假设 $b$ 在 $B$ 中. 由于 $B$ 是 w-compact的, 所以存在
+		$B$ 的一个紧子集 $\mathbf{C}$ 和 $X$ 的一个开放子集 $\mathrm{G}$ .
+		$mathrm{X}$ 使得 $B \in B \cap G \subseteq \mathrm{C}$. $C$在
+		因为 $X$ 是一个 T\textsubscript{\!$1$½} 空间. 因为 $B$ 是
+		在 $X$ 中是密集的, 而 $\mathrm{G}$ 在 $X$ 中是开的, 所以 $\bar{G}=\overline{B \cap
 			G}$. 因此
 	\end{cn}
 \end{paracol}
 \[
-	b \in G \subseteq \bar{G}=\overline{B \cap G} \subseteq \bar{C}=C \subseteq B .
+		b \in G \subseteq \bar{G}=\overline{B \cap G} \subseteq \bar{C}=C \subseteq B .
 \]
 \begin{paracol}{2}
-	
+
 	\begin{en}
-		This shows that $B$ is a neighborhood of $\mathbf{b}$. This being true for any
-		$b \in \mathrm{B}, \mathrm{B}$ is open.
+		This shows that $B$ is a neighborhood of $b$. This being true for any
+		$b \in B$, $B$ is open.
 	\end{en}
 	\begin{cn}
-		这表明 $B$ 是 $\mathbf{b}$ 的邻域。对于任何
-		都是如此 中的任何 $boldsymbol{b}$ 都是如此，所以 $mathrm{B}$ 是开的。
+		这表明 $B$ 是 $b$ 的邻域. 对于任何
+		都是如此 中的任何 $b$ 都是如此, 所以 $B$ 是开的.
 	\end{cn}
 \end{paracol}
 
-References 
+References
 
 1. J. L. Kelly, General Topology, D. Van Nostrand Company, Inc., Princeton,
-New Jersey, (1966). 
+New Jersey, (1966).
 
 2. A. Wilansky, Topology for Analysis, Ginn and Company,
-Massachusetts, (1970). 
+Massachusetts, (1970).
 
 3. P. S. Schnare, "Two Definitions of Local Compactness," American
-Mathematical Monthly 72 (1965), pp 764-765. 
+Mathematical Monthly 72 (1965), pp 764-765.
 
 4. J. L. Gross, "A Third Definition of Local
 Compactness," American Mathematical Monthly 74 (1976), pp 1120-1122.
 
-\linespread{1.3}\selectfont
-
-引理(Urysohn, 一般版本). 对于正规空间(=T2+T4) $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
-\[
-f(A)=0 \quad f(B)=1
-\]
-
-证明. 取任意一个在 $[0,1]$ 上稠密的可数集 $\left\{a_i\right\}_{i=0}^{\infty}$ (例如 $\left.\mathbb{Q} \cap[0,1]\right)$, 不妨假设 $a_0=0, a_1=1$. 下面拟构造一系列开集(除了 $\left.U_0\right)\left\{U_i\right\}_{i=0}^{\infty}$, 使得
-\[
-a_i<a_j \Longleftrightarrow \overline{U_i} \subseteq U_j
-\]
-
-具体来说, 令 $U_0=A, U_1=B^c$, 假设 $i<n$ 已经构造好, 假设 $a_i<a_n<a_j$. 此时根据条件, $\overline{U_i} \subseteq U_j$, 即 $\overline{U_i}$ 与 $U_j^c$ 不交, 故存在开集 $U_n$ 使得
-\[
-\overline{U_i} \subseteq U_n \subseteq \overline{U_n} \subseteq U_j
-\]
-
-这样, 登高面已经决定好, 下面我们说明其决定了函数. 定义
-\[
-f: X \longrightarrow[0,1] \quad x \longmapsto \inf \left\{a_i: x \in U_i\right\}
-\]
-
-下面说明其连续,
-- $f(x)<r$ 当且仅当对 $x \in \bigcup_{a_i<r} U_i$ 是开集.
-- 因为 $a_i$ 调密, $U_i$ 茨套的性质, $f(x)>s$ 当且仅当存在 $s<a_i$ 满足 $x \notin U_i$, 再利用稠密性知道这还当且仅当存在 $s<a_j<a_i$ 使得 $x \notin \overline{U_j}$, 这当且仅当 $x \in \bigcup_{s<a_j}\left(\overline{U_j}\right)^c$ 还是开集.
-
-这说明 $f$ 连续. 不难看出 $f(A)=0, f(B)=1$.
-相比之下，度量空间的Urysohn引理更加容易，且结论更强
-
-引理(Urysohn, 度量空间). 对于度量空间 $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
-\[
-f^{-1}(0)=A \quad f^{-1}(1)=B
-\]
-
-证明. 作 $g(x)=\frac{d(x, A)}{d(x, A)+d(x, B)}$, 注意, 因为 $A$ 是闭集, 故 $d(x, A)=0 \Longleftrightarrow x \in A$, 故分母不为零, 该函数确实被定义, 再根据二者都非负不难得到 $g(X) \subseteq[0,1]$. 不难得到此时 $g(x)=1$ 当且仅当 $x \in B, g(x)=0$ 当且仅当 $x \in A$, 此时再调整一个线性函数即可.
-
-作为类比，局部紧致下的Urysohn引理或许更为有用，这里局部紧已经暗含了Hausdorff性。
-引理(Urysohn, 局部紧空间). 对于局部紧空间 $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 且其中之一紧致, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
-\[
-f(A)=0 \quad f(B)=1
-\]
-
-证明. 不妨假设 $A$ 是紧致的, $B^c$ 是 $A$ 的邻域, 根据局部紧的假设, 存在开集 $V$ 使得 $A \subseteq V$ 且 $\bar{V}$ 是紧致的. 由于对于Hausdorff 紧致空间一定是正规的, 这样可以对 $A$ 和 $\partial V$ 用Urysohn引理, 有 $f(A)=0, f(\partial V)=1$, 只需要延拓 $f$ 使得在 $V$ 外 $f$ 取值为 1 就是满足条件的连续函数.
-
-一个自然的问题是上面的连续能否改为可微？这需要 $X$ 具有微分结构，这里不妨假设是欧式空间。如下的定理已经足够使用了，这个定理使用了磨光这一技巧。
-引理(Urysohn, 光滑版本). 对于欧式空间 $\mathbb{R}^n$ 的两个分离的闭集 $A, B$, 如果其中之一是紧致的, 则他们可以被光滑函数分离, 具体来说, 存在光滑函数 $f: X \rightarrow[0,1]$ 使得
-\[
-f(A)=0 \quad f(B)=1
-\]
-
-证明. 考虑 $f(x)=\left\{\begin{array}{ll}0 & x \leq 0 \\ \mathrm{e}^{-1 / x} & x>0\end{array}\right.$, 不难验证, $f$ 是光滑函数. 考虑 $g(x)=\frac{f(x)}{f(x)+f(1-x)}$ 这也是光滑函数, 对于 $a<b \leq c<d$, 记 $h(x)=\left\{\begin{array}{ll}g\left(\frac{x-a}{b-a}\right) & x \leq b \\ g\left(\frac{d-x}{d-c}\right) & b \leq x \leq d\end{array}\right.$, 这个函数光滑且在 $(a, d)$ 以外为 0, 在 $[b, c]$ 上为 1 , 方便起见记
-
-$[b, c] \leq h(x) \leq(a, d)$. 任意 $\epsilon$ 可以作 $\{0\} \leq h(x) \leq(-\epsilon, \epsilon)$, 再通过调整 $h$ 前的倍数可以使得存在光滑函数 $\chi_\epsilon^0$ 满足
-\[
-\chi_\epsilon^0(x)>0 \Longleftrightarrow x \in(-\epsilon, \epsilon) \quad \int \chi_\epsilon^0=1
-\]
-
-作 $\chi_\epsilon\left(x^1, \ldots, x^n\right)=\chi_\epsilon^0\left(x^1\right) \ldots \chi_\epsilon^0\left(x^n\right)$, 则满足
-\[
-\chi_\epsilon(x)>0 \Longleftrightarrow x \in(-\epsilon, \epsilon)^n \quad \int \chi_\epsilon=1
-\]
-
-在这里我们选 择距离 $d(x, y)=\sum\left|x_i-y_i\right|$, 选 择 $\epsilon>0$ 使得任 意 $a \in A, b \in B$ 都有 $3 \epsilon<d(a, b)$. 记 $A^*=\{x: d(x, A) \leq \epsilon\}, B^*=\{x: d(x, B) \leq \epsilon\}$. 记 $i=1-1_{A^*}, 1_{A^*}$ 是 $A^*$ 的特征函数, 此时考虑
-\[
-d(x, A)=\left(d * \chi_\epsilon\right)(x)=\int_{\mathbb{R}} i(x-t) \chi_\epsilon(t) \mathrm{d} t=\int_{(-\epsilon, \epsilon)^n} i(x-t) \chi_\epsilon(t) \mathrm{d} t
-\]
-
-注意到
-- $x \in A$ 意味着 $x-t \in A^*$, 此时 $d(x-t)=0$, 故 $f(x)=0$.
-- $x \in B$ 意味着 $x-t \in B^*$, 此时 $d(x-t)=1$, 故 $f(x)=1$.
-
-下面再验证 $f(x)$ 光滑,
-\[
-\frac{f(x+\Delta x)-f(x)}{\Delta x}=\int \frac{i(x+\Delta x-t)-i(x-t)}{\Delta x} \chi_\epsilon(t) \mathrm{d} t=\int \frac{\chi_\epsilon(x+\Delta x-t)-\chi_\epsilon(x-t)}{\Delta x} i(t) \mathrm{d} t
-\]
-
-因为 $\chi_\epsilon$ 光滑且只生活在一个紧致集上根据中值定理以及控制收玫定理, $\Delta x \rightarrow 0$ 和积分号可以交换顺序, 故
-\[
-\frac{\mathrm{d}}{\mathrm{d} x} f(x)=\int i(t) \frac{\mathrm{d}}{\mathrm{d} x} \chi_\epsilon(x-t) \mathrm{d} t=\int i(x-t) \frac{\mathrm{d}}{\mathrm{d} t} \chi_\epsilon(t) \mathrm{d} t
-\]
-
-上式是一维情况, 当中 $\frac{\mathrm{d}}{\mathrm{d} x}$ 在高维可以换成任意偏微分算子, 换言之, 我们证明了 $f(x)$ 是光滑的.
-实际上这样得到的函数还可以对导数做一些估计。
-
-记 $\chi$ 为 $\mathbb{R}^n$ 在 0 处取 $1,(-1,1)^n$ 外取 0 且 $\|\chi\|_{L^1}=1$ 的光滑函数, 对于重指标 $\alpha$, 记一致范数 $\left\|\partial^\alpha \chi\right\|=C_\alpha$. 则 $\chi_\epsilon$ 可以取为 $\frac{\chi(x / \epsilon)}{\epsilon^n}$, 故此时 $\left\|\partial^\alpha \chi_\epsilon\right\|=\frac{C_\alpha}{\epsilon^{|\alpha|+n}}$. 对于可测集合 $X$, 考虑
-\[
-f(x)=\int\left(1-1_X\right)(x-t) \chi_\epsilon(t) \mathrm{d} t=\int_{(-\epsilon,)^n}\left(1-1_X\right)(x-t) \chi_\epsilon
-\]
-
-则
-\[
-\left\|\partial^\alpha f\right\| \leq(2 \epsilon)^n|| \partial^\alpha \chi_\epsilon \| \leq \frac{2^n C_\alpha}{\epsilon^{|\alpha|}}
-\]
-
-这样, 对于紧致集 $A$, 闭集 $B$, Urysohn引理所作的光滑函数 $f$ 将满足 $\left\|\partial^\alpha f\right\| \leq \frac{2^n 3^{|\alpha|} C_\alpha}{d(A, B)^{|\alpha|}}$. 即对每个 $\alpha$, 存在常数 $M_\alpha$ 使得
-\[
-\left\|\partial^\alpha f\right\| \leq \frac{M_\alpha}{d(A, B)^{|\alpha|}}
-\]
-
-不过还有如下方法可以将定理做得更强。
-引理(Urysohn, 光滑版本). 对于欧式空间 $\mathbb{R}^n$ 的两个分离的闭集 $A, B$, 则他们可以被光滑函数分离, 具体来说, 存在光滑函数 $f: X \rightarrow[0,1]$ 使得
-\[
-f^{-1}(0)=A \quad f^{-1}(1)=B
-\]
-
-证明. 采取的方法是对每个闭集 $A$ 找类似距离函数的光滑函数 $\partial(x, A) \geq 0$ 使得 0 的原像就是 $A$, 然后为了达成要求只需要 $f(x)=\frac{\partial(x, A)}{\partial(x, A)+\partial(x, B)}$. 可以断言, 任何一个闭集 $A$ 都是可数个正方形 $\left\{x_i+\left(-\epsilon_i, \epsilon_i\right)^n\right\}$ 的并, 不妨假设 $\epsilon \leq 1$. 上面可以得到 $\chi$ 在 0 处取 $1,(-1,1)^n$ 外取 0 , 取 $C_n \geq 1$ 使得
-\[
-\max _{|\alpha| \leq n}\left\|\partial^\alpha \chi\right\| \leq C_n
-\]
-
-作
-\[
-\partial(x, A)=\sum_{i=1}^{\infty} \frac{\epsilon_i^i}{2^i C_i} \chi\left(\frac{x-x_i}{\epsilon_i}\right)
-\]
-
-此时
-\[
-\left|\partial^\alpha \partial(x)\right| \leq \sum_{i=1}^{\infty} \frac{\epsilon_i^{i-|\alpha|}}{2^i C_i}\left(\partial^\alpha \chi\right)\left|\left(\frac{x-x_i}{\epsilon_i}\right)\right| \leq \sum_{i=1}^{|\alpha|}(\ldots)+\sum_{i=|\alpha|+1}^{\infty} \frac{1}{2^i}
-\]
-
-故各阶导数均一致收玫, 故 $\partial(x, A)$ 无限次可微. 而显然 $\partial(x, A)=0 \Longleftrightarrow x \in A$.
-
-下面是著名的Tietz扩张定理。
-定理(Tietz扩张). 如果 $X$ 是正规空间或度量空间, $A$ 是其中一个闭集(或 $X$ 是局部紧空间, $A$ 是紧致时), 则任何 $A$ 上的连续函数都可以延拓到整个 $X$ 上.
-证明. 设连续函数 $f: A \rightarrow \mathbb{R}$, 首先, 可以不妨假设 $f$ 是有界的, 否则可以 $\arctan$ 伺候. 不妨假设 $f(A) \subseteq[0,1]$. 因为 $A$ 是闭集(紧致集), 故 $[0,1]$ 的闭集的原像是 $X$ 的闭集(紧致集).
-- 根据Urysohn引理考虑取连续函数 $g_1: X \rightarrow[0,1 / 3]$ 分离 $B_1=f^{-1}[2 / 3,1]$ 和 $C_1=f^{-1}[0,1 / 3]$, 使得 $g_1\left(B_1\right)=1 / 3, g_1\left(C_1\right)=0$.
-- 再考虑 $f_2=f-\left.g_1\right|_A$, 此时 $f_2(A) \subseteq[0,2 / 3]$, 然后再取取连续函数 $g_2: X \rightarrow[0,(1 / 3)(2 / 3)]$ 分离 $B_2=f_2^{-1}\left[(2 / 3)^2, 2 / 3\right], C_2=f_2^{-1}[0,(1 / 3)(2 / 3)]$, 使得 $g_2\left(B_2\right)=(1 / 3)(2 / 3), g_2\left(C_2\right)=0$.
-- 再考虑 $f_3=f_2-\left.g_2\right|_A$, 此时 $f_3(A) \subseteq\left[0,(2 / 3)^2\right]$.
-以此类推可以得到 $\left.\left\{g_n\right\}_{n=1}^{\infty}\right\}$ 使得 $\left\|g_n\right\| \leq(1 / 3)(2 / 3)^{n-1},\left\|f-\sum_{i=1}^n g_i\right\|_A \leq(2 / 3)^n$, 换言之 $g=\sum_{i=1}^{\infty} g_i$ 一致收玫 (从而连续), 且在 $A$ 上 $f=g$. 这就完成了证明.
-
-下面可以来推导著名的单位分拆定理。
-定义(单位分拆). 对于拓扑空间 $X$, 对于连续函数 $f: X \rightarrow \mathbb{R}$, 记支集 $\operatorname{supp} f=\overline{\{x \in X: f(x) \neq 0\}}$. 对于开覆盖 $\left\{U_\alpha\right\}$ , 称一族函数 $\left\{\varphi_i\right\}$ 是 $\left\{U_\alpha\right\}$ 的单位分拆如果
-- 对任意 $i$, 存在 $\alpha$ 使得 $\operatorname{supp} \varphi_i \subseteq U_\alpha$.
-- 对每个 $x \in X$, 存在邻域 $U$ 使得 $\left\{i: U \cap \operatorname{supp} \varphi_i \neq \varnothing\right\}$ 是有限集. $\left(\operatorname{supp} \varphi_i\right.$ 局部有限)
-
-- 对任意 $x \in X$ 都有 $\sum_i \varphi_i(x)=1$, 以及 $\varphi_i(x) \geq 0$.
-
-如果 $\varphi_i$ 都是光滑的, 就称之为光滑单位分拆.
-
-当然，最为基本的就是紧致的情况。
-定理(单位分拆存在定理, 紧致版本). 对于Hausdorff紧致空间 $X$, 任意开覆盖总存在单位分拆.
-证明. 任意取开覆盖, 对于每一点 $x$, 假设开覆盖中 $x \in U_x$, 存在开集 $W_x, V_x$ 使得
-\[
-x \in W_x \subseteq \overline{W_x} \subseteq V_x \subseteq \overline{V_x} \subseteq U_x
-\]
-
-此时 $\left\{W_x\right\}$ 还是开覆盖, 故存在有限覆盖 $\left\{W_{x_i}\right\}$. 此时根据Urysohn引理作 $\psi_i: X \rightarrow[0,1]$ 满足 $\varphi_i\left(\overline{W_{x_i}}\right)=1$ 且 $\varphi_i\left(V_{x_i}^c\right)=0$, 作 $\psi=\sum \varphi_i$, 因为 $\left\{W_{x_i}\right\}$ 是开覆盖, 故 $\psi \geq 1$, 故 $\varphi_i=\frac{\psi_i}{\psi} \geq 0$ 的支集 $\subseteq \overline{V_x} \subseteq U_x$, 且满足 $\sum \varphi_i=1$, 故满足条件.
-
-我们自然也不会放过光滑的版本。
-定理(单位分拆存在定理, 光滑版本). 对于流形 $M$ (假定C2), 任意开覆盖总存在光滑单位分拆.
-证明. 我们总可以找到可数的开集 $\left\{U_i\right\}$ 和紧致集 $F_i$ 使得
-\[
-U_1 \subseteq F_1 \subseteq U_2 \subseteq F_2 \subseteq \ldots \quad \bigcup_{i=1}^{\infty} U_i=M
-\]
-
-只需要取可数拓扑基 $\left\{B_i\right\}$, 定义 $U_1=B_1, F_1=\overline{U_1}$, 找充分大的 $n$ 使得 $U_2=\bigcup_{i=1}^n U_i \supseteq F_1$ 以此类推. 这样 $\left\{U_{i+1} \backslash F_{i-1}\right\}$ 就是一个局部有限的可数开覆盖. 假设 $x \in U_i \backslash U_{i-1}$, 那么上面的证明中的 $V_x, W_x$ 不妨取在 $U_i \backslash F_{i-1}$ 之中. 他们形成 $F_i \backslash U_{i-2}$ 的开覆盖, 根据Lindelöf覆盖定理他们存在可数子覆盖, 不难验证选出的可数子覆盖满足“局部有限”的条件, 之后的证明都如愿以偿.
-
-下面我们来介绍“光滑”版本的延拓定理。
-定理(子流形延拓定理). 对于流形 $M$, 子流形 $N \subseteq M$ 上的光滑函数可以延拓到 $M$ 上.
-证明. 假设光滑函数是 $f$. 在某一点附近 $U$ 可以选择坐标卡使得 $N$ 的坐标恰好是 $M$ 坐标前几位(因为子流形要求非退化, $N$ 的坐标切映射可以延拓成一组基), 这样局部就得以延拓, 假设延拓为 $f_U$. 将这些局部收集起来得到 $U_i$. 作单位分拆 $\left\{\varphi_j\right\}$, 则在 $\operatorname{supp} \varphi_j \subseteq U_i$ 对某个 $i$, 作 $g_i=\varphi_i f_U$, 这是一个定义在整个 $M$ 上的光滑函数, 再做 $g=\sum g_i$, 这就为所求的光滑函数.
-
-至此，可以我们可以说扩张定理的根基是Urysohn引理，Urysohn引理是扩张定理的特殊情况，粗略来说Urysohn引理得到的函数就是连续 (光滑) 函数大背景下是对特征函数的替代，通过特征函数组成简单函数（即他们的和）来逼近函数是一种约化的简单方法，问题简单化之后变得能够解决，同样的思想还被用于证明Riesz表示定理。Urysohn引理的进一步“用法”就是用于局部紧空间，给一个邻域“搭台唱戏”，这样导出的单位分拆得将局部的函数“连成一片”，尽管他们在相交处可能是不同的，这足以看到单位分拆是微分流形上关于函数 (更广泛来说是场) 的“局部-整体”原理，而如解析函数一类则无此性质，这表明解析函数的刚性，这从侧面反映出光滑函数虽然比连续函数要求稍高一些，但本质上还是足够“柔软”的。
 \end{document}
+局部紧空间, 连续函数空间, 拓扑, 连续线性泛函, 测度
+集合上的取值, 闭集上的特征函数to
