@@ -8,6 +8,7 @@
 \usepackage{fixdif}
 \usepackage{tikz-cd}
 \usepackage{paracol}
+\usepackage{hyperref}
 \input{font}
 \renewcommand\thefootnote{\fnsymbol{footnote}}
 
@@ -26,7 +27,8 @@
 
 \linespread{1.3}\selectfont
 \begin{center}{\bf\Huge{关于延拓定理的注注又记记}}\\
-	{\scshape{Xiong Rui}}
+	{{\scshape{Rui Xiong}}\quad\url{https://www.cnblogs.com/XiongRuiMath/p/9514946.html}\\ 
+	{\scshape{Zuoqin Wang}}\quad\url{http://staff.ustc.edu.cn/\~wangzuoq/Courses/22S-Topology}}
 \end{center}
 \begin{remark}
 	引理(Urysohn, 一般版本). 对于正规空间(=T2+T4) $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
@@ -35,13 +37,13 @@
 	\]
 \end{remark}
 
-证明. 取任意一个在 $[0,1]$ 上稠密的可数集 $\left\{a_i\right\}_{i=0}^{\infty}$ (例如 $\left.\mathbb{Q} \cap[0,1]\right)$, 不妨假设 $a_0=0, a_1=1$. 下面拟构造一系列开集(除了 $\left.U_0\right)\left\{U_i\right\}_{i=0}^{\infty}$, 使得
+证明. 取任意一个在 $[0,1]$ 上稠密的可数集 $\left\{a_i\right\}_{i=0}^{\infty}$ (例如 $\mathbb{Q} \cap[0,1]$), 不妨假设 $a_0=0, a_1=1$. 下面拟构造一系列开集(除了$\left.U_0\right)\left\{U_i\right\}_{i=0}^{\infty}$, 使得
 \[
-		a_i<a_j \Longleftrightarrow \overline{U_i} \subseteq U_j
+		a_i<a_j \Longleftrightarrow \overline{U_i} \subseteq U_j.
 \]
 具体来说, 令 $U_0=A, U_1=B^c$, 假设 $i<n$ 已经构造好, 假设 $a_i<a_n<a_j$. 此时根据条件, $\overline{U_i} \subseteq U_j$, 即 $\overline{U_i}$ 与 $U_j^c$ 不交, 故存在开集 $U_n$ 使得
 \[
-		\overline{U_i} \subseteq U_n \subseteq \overline{U_n} \subseteq U_j
+		\overline{U_i} \subseteq U_n \subseteq \overline{U_n} \subseteq U_j,
 \]
 这样, 登高面已经决定好, 下面我们说明其决定了函数. 定义
 \[
@@ -257,7 +259,7 @@ $1,(-1,1)^n$ 外取 $0$ , 取 $C_n \geq 1$ 使得
 \end{remark}
 证明. 我们总可以找到可数的开集 $\left\{U_i\right\}$ 和紧致集 $F_i$ 使得
 \[
-		U_1 \subseteq F_1 \subseteq U_2 \subseteq F_2 \subseteq \ldots \quad \bigcup_{i=1}^{\infty} U_i=M
+		U_1 \subseteq F_1 \subseteq U_2 \subseteq F_2 \subseteq \cdots \bigcup_{i=1}^{\infty} U_i=M
 \]
 
 只需要取可数拓扑基 $\left\{B_i\right\}$, 定义 $U_1=B_1, F_1=\overline{U_1}$, 找充分大的 $n$ 使得 $U_2=\bigcup_{i=1}^n U_i \supseteq F_1$ 以此类推. 这样 $\left\{U_{i+1} \backslash F_{i-1}\right\}$ 就是一个局部有限的可数开覆盖. 假设 $x \in U_i \backslash U_{i-1}$, 那么上面的证明中的 $V_x, W_x$ 不妨取在 $U_i \backslash F_{i-1}$ 之中. 他们形成 $F_i \backslash U_{i-2}$ 的开覆盖, 根据Lindelöf覆盖定理他们存在可数子覆盖, 不难验证选出的可数子覆盖满足“局部有限”的条件, 之后的证明都如愿以偿.
@@ -338,7 +340,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 \section{拓扑空间的紧性}
 \begin{center}{\bf\Huge{WHAT IS ``LOCALLY COMPACT''?
 		}}\\
-	{\scshape{Raghu R. Gompa\\Indiana University at Kokomo}}
+	{{\scshape{Raghu R. Gompa, Indiana University at Kokomo}}\\\url{https://www.pme-math.org/journal/issues/PMEJ.Vol.9.No.6.pdf}\quad{p. 390}}
 \end{center}
 \setcolumnwidth{0.40\textwidth/20pt, 0.40\textwidth}
 
@@ -521,7 +523,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 	\end{en}
 	\begin{cn}
 		\noindent
-		在 $x$ 处成立, 因此所有紧性概念都是等价的. 注意在 $x$ 是s-compact的空间在$x$是正则的; 也就是说, 对于每个开集每个包含$x$的开集都对应着一个开集$H$这样的$x \in H$中 $\subseteq	H \subseteq G$. 事实上, 空间的这一属性空间的这一属性保证了所有这些概念的等价性. 为了证明这一点, 让我们假设$X$ 在 $x$ 处是 w-compact 的, 在$x$处是规则的. 我们证明$X$在$x$是s-compact的. 让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的, 所以$x$有一个紧的邻域$N$. 设$A=G\cap N^{\circ}$.那么根据$x$的正则性, 存在一个开集$H$, 使得
+		在 $x$ 处成立, 因此所有紧性概念都是等价的. 注意在 $x$ 是s-compact的空间在$x$是正则的; 也就是说, 对于每个开集每个包含$x$的开集都对应着一个开集$H$这样的$x \in H$中 $\subseteq	H \subseteq G$. 事实上, 空间的这一属性保证了所有这些概念的等价性. 为了证明这一点, 让我们假设$X$ 在 $x$ 处是 w-compact 的, 在$x$处是规则的. 我们证明$X$在$x$是s-compact的. 让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的, 所以$x$有一个紧的邻域$N$. 设$A=G\cap N^{\circ}$.那么根据$x$的正则性, 存在一个开集$H$, 使得
 	\end{cn}
 \end{paracol}
 \[
@@ -584,19 +586,19 @@ f:[0,1] \rightarrow[0,1]^2 .
 	\end{cn}
 \end{paracol}
 
-References
+{\begin{center}\Large References\end{center}}
 
-1. J. L. Kelly, General Topology, D. Van Nostrand Company, Inc., Princeton,
+\textbf{1.} \textsc{J. L. Kelly}, \textit{General Topology}, D. Van Nostrand Company, Inc., Princeton,
 New Jersey, (1966).
 
-2. A. Wilansky, Topology for Analysis, Ginn and Company,
+\textbf{2.} \textsc{A. Wilansky}, \textit{Topology for Analysis}, Ginn and Company,
 Massachusetts, (1970).
 
-3. P. S. Schnare, "Two Definitions of Local Compactness," American
-Mathematical Monthly 72 (1965), pp 764-765.
+\textbf{3.} \textsc{P. S. Schnare}, \textit{Two Definitions of Local Compactness}, American
+Mathematical Monthly \textbf{72} (1965), pp 764--765.
 
-4. J. L. Gross, "A Third Definition of Local
-Compactness," American Mathematical Monthly 74 (1976), pp 1120-1122.
+\textbf{4.} \textsc{J. L. Gross}, \textit{A Third Definition of Local
+Compactness}, American Mathematical Monthly \textbf{74} (1976), pp 1120--1122.
 
 \end{document}
 局部紧空间, 连续函数空间, 拓扑, 连续线性泛函, 测度
