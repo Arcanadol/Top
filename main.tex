@@ -4,6 +4,8 @@
 \renewcommand{\emph}[1]{\CJKunderline{#1}}
 \usepackage{unicode-math}
 \usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{fontspec}
 \usepackage{fixdif}
 \usepackage{tikz-cd}
@@ -27,13 +29,13 @@
 
 \linespread{1.3}\selectfont
 \begin{center}{\bf\Huge{关于延拓定理的注注又记记}}\\
-	{{\scshape{Rui Xiong}}\quad\url{https://www.cnblogs.com/XiongRuiMath/p/9514946.html}\\ 
+	{{\scshape{Rui Xiong}}\quad\url{https://www.cnblogs.com/XiongRuiMath/p/9514946.html}\\
 	{\scshape{Zuoqin Wang}}\quad\url{http://staff.ustc.edu.cn/\~wangzuoq/Courses/22S-Topology}}
 \end{center}
 \begin{remark}
 	引理(Urysohn, 一般版本). 对于正规空间(=T2+T4) $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数分离, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
 	\[
-			f(A)=0 \quad f(B)=1
+			f(A)=0 \quad f(B)=1.
 	\]
 \end{remark}
 
@@ -60,7 +62,9 @@
 \begin{remark}
 
 	相比之下, 度量空间的Urysohn引理更加容易, 且结论更强
+
 	\hrulefill
+
 	引理(Urysohn, 度量空间). 对于度量空间 $X$, 令 $A, B$ 是 $X$ 的两个分离的闭集, 则他们可以被连续函数\emph{完全分离}, 具体来说, 存在连续函数 $f: X \rightarrow[0,1]$ 使得
 	\[
 			f^{-1}(0)=A \quad f^{-1}(1)=B
@@ -271,8 +275,9 @@ $1,(-1,1)^n$ 外取 $0$ , 取 $C_n \geq 1$ 使得
 
 	定理(子流形延拓定理). 对于流形 $M$, 子流形 $N \subseteq M$ 上的光滑函数可以延拓到 $M$ 上.
 \end{remark}
-证明. 假设光滑函数是 $f$. 在某一点附近 $U$ 可以选择坐标卡使得 $N$ 的坐标恰好是 $M$ 坐标前几位(因为子流形要求非退化, $N$ 的坐标切映射可以延拓成一组基), 这样局部就得以延拓, 假设延拓为 $f_U$. 将这些局部收集起来得到 $U_i$. 作单位分拆 $\left\{\varphi_j\right\}$, 则在 $\operatorname{supp} \varphi_j \subseteq U_i$ 对某个 $i$, 作 $g_i=\varphi_i f_U$, 这是一个定义在整个 $M$ 上的光滑函数, 再做 $g=\sum g_i$, 这就为所求的光滑函数.
-
+\begin{proof}
+	假设光滑函数是 $f$. 在某一点附近 $U$ 可以选择坐标卡使得 $N$ 的坐标恰好是 $M$ 坐标前几位(因为子流形要求非退化, $N$ 的坐标切映射可以延拓成一组基), 这样局部就得以延拓, 假设延拓为 $f_U$. 将这些局部收集起来得到 $U_i$. 作单位分拆 $\left\{\varphi_j\right\}$, 则在 $\operatorname{supp} \varphi_j \subseteq U_i$ 对某个 $i$, 作 $g_i=\varphi_i f_U$, 这是一个定义在整个 $M$ 上的光滑函数, 再做 $g=\sum g_i$, 这就为所求的光滑函数.
+\end{proof}
 至此, 可以我们可以说扩张定理的根基是Urysohn引理, Urysohn引理是扩张定理的特殊情况, 粗略来说Urysohn引理得到的函数就是连续 (光滑) 函数大背景下是对特征函数的替代, 通过特征函数组成简单函数(即他们的和)来逼近函数是一种约化的简单方法, 问题简单化之后变得能够解决, 同样的思想还被用于证明Riesz表示定理.
 
 Urysohn引理的进一步``用法''就是用于局部紧空间, 给一个邻域``搭台唱戏'', 这样导出的单位分拆得将局部的函数``连成一片'', 尽管他们在相交处可能是不同的,
@@ -315,27 +320,30 @@ Urysohn引理的进一步``用法''就是用于局部紧空间, 给一个邻域`
 
 最后分别取 $\varepsilon=\frac{1}{n}$, 我们得到一列紧支连续函数 $g_n$ 依测度收敛于 $f$. 再由 Riesz 定理, $g_n$有子列几乎处处收敛于 $f$.
 
-最后是一个具有趣味性的例子, 涉及到 Cantor 集
+\vfill
+
+再提一个具有趣味性的例子, 涉及到 Cantor 集
 \[
-C=[0,1] \backslash \bigcup_{n=1}^{\infty} \bigcup_{k=0}^{3^{n-1}-1}\left(\frac{3 k+1}{3^n}, \frac{3 k+2}{3^n}\right) .
+		C=[0,1] \backslash \bigcup_{n=1}^{\infty} \bigcup_{k=0}^{3^{n-1}-1}\left(\frac{3 k+1}{3^n}, \frac{3 k+2}{3^n}\right) .
 \]
 可以证明映射
 \[
-g:\{0,1\}^{\mathbb{N}} \rightarrow C \subset[0,1], \quad a=\left(a_1, a_2, \cdots\right) \mapsto \sum_{k=1}^{\infty} \frac{2}{3^k} a_k
+		g:\{0,1\}^{\mathbb{N}} \rightarrow C \subset[0,1], \quad a=\left(a_1, a_2, \cdots\right) \mapsto \sum_{k=1}^{\infty} \frac{2}{3^k} a_k
 \]
 是从 $\left(\{0,1\}^{\mathbb{N}}, \mathscr{T}_{\text {product }}\right)$ 到 Cantor 集 $C$ 的同胚, 且映射
 \[
-h:\{0,1\}^{\mathbb{N}} \rightarrow[0,1]^2, \quad a=\left(a_1, a_2, \cdots\right) \mapsto\left(\sum_{k=1}^{\infty} \frac{a_{2 k-1}}{2^k}, \sum_{k=1}^{\infty} \frac{a_{2 k}}{2^k}\right)
+		h:\{0,1\}^{\mathbb{N}} \rightarrow[0,1]^2, \quad a=\left(a_1, a_2, \cdots\right) \mapsto\left(\sum_{k=1}^{\infty} \frac{a_{2 k-1}}{2^k}, \sum_{k=1}^{\infty} \frac{a_{2 k}}{2^k}\right)
 \]
 是一个连续满射. 于是, 我们得到一个连续满射
 \[
-h \circ g^{-1}: C \rightarrow[0,1]^2 .
+		h \circ g^{-1}: C \rightarrow[0,1]^2 .
 \]
 由于 $C$ 在 $[0,1]$ 中是闭集, 因此由 Tietze 扩张定理, 存在一个连续满射
 \[
-f:[0,1] \rightarrow[0,1]^2 .
+		f:[0,1] \rightarrow[0,1]^2 .
 \]
 一般而言, 我们把从 $[0,1]$ 到拓扑空间的连续映射叫做曲线, 于是我们得到了一条填满单位正方形的曲线! 这种能填满正方形的曲线最早是 Peano 在 1890 年发现的:
+
 \newgeometry{left = 0.8cm, right = 0.8cm}
 \section{拓扑空间的紧性}
 \begin{center}{\bf\Huge{WHAT IS ``LOCALLY COMPACT''?
@@ -438,7 +446,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 
 	\end{en}
 	\begin{cn}
-		一个具有余有限拓扑的无穷集揭示出, 即使在紧的、$T_1$-和 R-空间中
+		一个具有余有限拓扑的无穷集揭示出, 即使在紧的, $T_1$-和 R-空间中
 	\end{cn}
 \end{paracol}
 \[
@@ -449,7 +457,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 		But in-compact and s-compact at $x$ are equivalent in a topological space which is T\textsubscript{\!$2$} at $x$. A space $X$ is called T\textsubscript{\!$2$} at $x$ iff for any point y of $X$ different from $x$, there exist two disjoint open sets $G$ and $H$ in $X$ containing $y$ and $x$, respectively. It is easy to verify that a topological space $X$ is T\textsubscript{\!$2$} at a point $x$ iff to each compact set A not containing $x$ there correspond two disjoint open sets $L$ and m such that $A \subseteq L$ and $x \in M$.
 	\end{en}
 	\begin{cn}
-		但是在拓扑空间中, $x$的in-compact和s-compact等价于$x$的T\textsubscript{\!$2$}. 如果对于$X$中不同于$x$的任意点y, 在$X$中存在两个不相交的开集$G$和$H$, 分别包含$y$和$x$, 那么在$x$处的$X$空间被称为T\textsubscript{\!$2$}. 很容易验证拓扑空间 $X$ 在点 $x$ 上是 T\textsubscript{\!$2$}, 如果对每个不包含 $x$ 的紧集合 A 来说, 有两个不相交的开集 $ L$ 和 m 对应, 使得 $A \subseteq L$ 和 $x 6 M$.
+		但是在拓扑空间中, $x$的in-compact和s-compact等价于$x$的T\textsubscript{\!$2$}. 如果对于$X$中不同于$x$的任意点y, 在$X$中存在两个不相交的开集$G$和$H$, 分别包含$y$和$x$, 那么在$x$处的$X$空间被称为T\textsubscript{\!$2$}. 很容易验证拓扑空间 $X$ 在点 $x$ 上是 T\textsubscript{\!$2$}, 如果对每个不包含 $x$ 的紧集合 $A$ 来说, 有两个不相交的开集 $ L$ 和 $m$ 对应, 使得 $A \subseteq L$ 和 $x \in M$.
 	\end{cn}
 	\begin{en}
 		Let us show that if $X$ is $T_{\mathbf{2}}$ at $x$ and
@@ -460,8 +468,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 		complement of $G$. Clearly A is a closed subset of the compact space
 		$N$ and hence compact. Since $x \notin A$ and $X$
 		is T\textsubscript{\!$2$} at $x$, there are disjoint open sets $ L$
-		and $M$ such that $A \subseteq  L$ and $x
-		\in M$. Now $M \subseteq  L'$ and
+		and $M$ such that $A \subseteq  L$ and $x \in M$. Now $M \subseteq  L'$ and
 
 	\end{en}
 	\begin{cn}
@@ -483,7 +490,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 
 	\end{en}
 	\begin{cn}
-		(板表示集合闭包), 这意味着 $\bar{M} \cap N \subseteq G$. 因此 $H=M \cap N^{\circ}$ ($N^{\circ}$ 是 $N$ 的内部) 是一个包含 $2$ 的开集, 并且
+		(板表示集合闭包), 这意味着 $\bar{M} \cap N \subseteq G$. 因此 $H=M \cap N^{\circ}$ ($N^{\circ}$ 是 $N$ 的内部) 是一个包含 $x$ 的开集, 并且
 	\end{cn}
 \end{paracol}
 \[
@@ -523,7 +530,7 @@ f:[0,1] \rightarrow[0,1]^2 .
 	\end{en}
 	\begin{cn}
 		\noindent
-		在 $x$ 处成立, 因此所有紧性概念都是等价的. 注意在 $x$ 是s-compact的空间在$x$是正则的; 也就是说, 对于每个开集每个包含$x$的开集都对应着一个开集$H$这样的$x \in H$中 $\subseteq	H \subseteq G$. 事实上, 空间的这一属性保证了所有这些概念的等价性. 为了证明这一点, 让我们假设$X$ 在 $x$ 处是 w-compact 的, 在$x$处是规则的. 我们证明$X$在$x$是s-compact的. 让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的, 所以$x$有一个紧的邻域$N$. 设$A=G\cap N^{\circ}$.那么根据$x$的正则性, 存在一个开集$H$, 使得
+		在 $x$ 处成立, 因此所有紧性概念都是等价的. 注意在 $x$ 是s-compact的空间在$x$是正则的; 也就是说, 对于每个包含$x$的开集都对应着一个$x$开邻域$H$使得$x \in H\subseteq \subseteq\bar{H} \subseteq G$. 事实上, 空间的这一属性保证了所有这些概念的等价性. 为了证明这一点, 让我们假设$X$ 在 $x$ 处是 w-compact 的, 在$x$处是规则的. 我们证明$X$在$x$是s-compact的. 让$G$是任意开集包含$x$.因为$X$在$x$处是w-compact的, 所以$x$有一个紧的邻域$N$. 设$A=G\cap N^{\circ}$.那么根据$x$的正则性, 存在一个开集$H$, 使得
 	\end{cn}
 \end{paracol}
 \[
@@ -555,19 +562,18 @@ f:[0,1] \rightarrow[0,1]^2 .
 		$X$, because $X$ is a T\textsubscript{\!$1$½}-space. Since $\mathrm{B}$ is
 		dense in $X$ and $\mathrm{G}$ is open in $X, \bar{G}=\overline{B \cap
 			G}$. Thus
-
 	\end{en}
 	\begin{cn}
 		最后, 我们将分析局部紧空间的一些标准性质.
 		紧空间的一些标准性质. 显然, 任何局部紧性$x$都是封闭遗传的(即在封闭子空间下保存).
 		(即在封闭子空间下保存). 然而, 只有 s-compactness 和 b-compactness 是开遗传的(即在开子集下保留). 空间
-		空间 $\BbbQ$ 的一点紧化是m-compact性(因此是 w-compact性), 其中的开集
-		$\BbbQ$既不是 m-compact 也不是 w-compact. 一个空间 $X$ 的 w-compact 密子集 B 是开的.
-		事实上, 假设 $b$ 在 $B$ 中. 由于 $B$ 是 w-compact的, 所以存在
-		$B$ 的一个紧子集 $\mathbf{C}$ 和 $X$ 的一个开放子集 $\mathrm{G}$ .
-		$mathrm{X}$ 使得 $B \in B \cap G \subseteq \mathrm{C}$. $C$在
+		空间 $\BbbQ$ 的一点紧化是m-compact性(因此是w-compact性), 其中的开集
+		$\BbbQ$既不是m-compact也不是w-compact.一个空间$X$的w-compact密子集B是开的.
+		事实上,假设$b$在$B$中. 由于 $B$ 是 w-compact的, 所以存在
+		$B$ 的一个紧子集 $\mathbf{C}$ 和 $X$ 的一个开放子集 $G$ .
+		${X}$ 使得 $B \in B \cap G \subseteq C$. $C$在
 		因为 $X$ 是一个 T\textsubscript{\!$1$½} 空间. 因为 $B$ 是
-		在 $X$ 中是密集的, 而 $\mathrm{G}$ 在 $X$ 中是开的, 所以 $\bar{G}=\overline{B \cap
+		在 $X$ 中是稠密的, 而 $G$ 在 $X$ 中是开的, 所以 $\bar{G}=\overline{B \cap
 			G}$. 因此
 	\end{cn}
 \end{paracol}
@@ -598,8 +604,93 @@ Massachusetts, (1970).
 Mathematical Monthly \textbf{72} (1965), pp 764--765.
 
 \textbf{4.} \textsc{J. L. Gross}, \textit{A Third Definition of Local
-Compactness}, American Mathematical Monthly \textbf{74} (1976), pp 1120--1122.
+	Compactness}, American Mathematical Monthly \textbf{74} (1976), pp 1120--1122.
 
+\newgeometry{left = 3cm, right = 3cm}
+
+\linespread{1.3}\selectfont
+\begin{center}{\bf\Huge{横截性的一些理解}}\\
+	{\textsc{InnocentFIVE},\quad \url{https://github.com/InnocentFIVE/Concise-Real-Variables-DDG}}
+\end{center}
+我们从一道实分析习题讲起:
+\begin{remark}
+	令$f\colon[0,1]\to \mathbb R$可微, 令$E=\left\{\,f'=0\,\right\}$, 证明$\symfrak{m}(f(E))=0$.
+\end{remark}
+
+由于涉及到的集合可测性未知(不过$E$是可测的), 因此需要用外测度, 由于\textsc{Lebesgue}外测度的外正则性(也就是存在外测度相等的可测超集), 讨论中以构造上升集列为佳, 故考虑(导数的)极大估计
+\[g_n(x)=\sup_{|y-x|\leqslant 1/n}\left| \frac{f(y)-f(x)}{y-x} \right|.\]
+
+则由$g_n\downarrow_n |f'|$, 故$E=\bigcap_{k\geqslant 1}\bigcup_{n\geqslant 1}\left\{\,g_n\leqslant \frac{1}{k}\,\right\}$. 故
+\[f(E)\subset \bigcap_{k\geqslant 1}\bigcup_{n\geqslant 1} f\Bigl(\left\{\,g_n\leqslant \frac{1}{k}\,\right\}\Bigr).\]
+只需估计$\bigcup_{n\geqslant 1}f\bigl(\left\{\,g_n\leqslant \frac{1}{k}\,\right\}\bigr)$即可. 为简便, 固定$k$, 不妨设$\left\{\,g_n\leqslant \frac{1}{k}\,\right\}=E_n$, 则令
+\[E_n\subset\bigcup_{m\geqslant 0}(a_m,b_m),\quad b_m-a_m<\frac{1}{n},\quad \bigcup_{m\geqslant 0}(b_m-a_m) < \symfrak{m}^*(E_n)+\varepsilon.\]
+其中$b_m-a_m < \frac 1n$是为了令$x_1$, $x_2\in E_n\cap(a_m,b_m)$, 则依赖$E_n$定义有$|f(x_1)-f(x_2)|<\frac{|x_1-x_2|}{k}$. 故
+\[\operatorname*{diam}\bigl(f(E_n\cap(a_m,b_m))\bigr)\leqslant \frac{b_m-a_m}{k}.\]
+故
+\[\symfrak{m}^*(f(E_n))\leqslant \sum_{m\geqslant 0} \frac{b_m-a_m}{k} < \frac{\symfrak{m}^*(E_n)+\varepsilon}{k}.\]
+也即是$\symfrak{m}^*(f(E_n))\leqslant \frac{\symfrak{m}^{\!*\!}(E_n)}{k}$. 接下来是利用外正则性估计$\bigcup_{n\geqslant 1}f(E_n)$的外测度. 令$G_n$可测且$f(E_n)\subset G_n$, $f(E_n)$和$G_n$外测度相等(只需令$A_m$是包含$f(E_n)$的开集且$\symfrak{m}(A_m)<\symfrak{m}^*(f(E_n))+\frac{1}{m}$, 令$G_n=\bigcap_{m\geqslant 1}A_m$即可), 令$H_n=\bigcap_{k\geqslant n}G_k$, 由$f(E_n)$随$n$上升, 故$f(E_n)\leqslant H_n$, 且$\symfrak{m}^*(f(E_n))= \symfrak{m}^*(H_n)$. 故
+\[\sup_n \symfrak{m}^*(f(E_n))=\sup_n \symfrak{m}(H_n)=\symfrak{m}\Bigl(\bigcup_{n\geqslant 1}H_n\Bigr)\geqslant \symfrak{m}^*\Bigl(\bigcup_{n\geqslant 1}f(E_n)\Bigr).\]
+反向的不等式显然, 故$\symfrak{m}^*\bigl(\bigcup_{n\geqslant 1}f(E_n)\bigr)=\sup_n \symfrak{m}^*(f(E_n))\leqslant \frac{\sup \symfrak{m}^{\!*\!}(E_n)}{k}\leqslant \frac{1}{k}$. 故$\symfrak{m}^*(f(E))\leqslant \symfrak{m}^*\bigl(\bigcup_{n\geqslant 1}f(E_n)\bigr)\leqslant \frac{1}{k}$得到$f(E)$零测.
+
+\hrulefill
+
+一个更直接的想法是考虑开球族$\{B_x\}_{x\in E}$, 其中$B_x$满足
+\[y\in B_x\setminus\{x\}\implies \left| \frac{f(y)-f(x)}{y-x} \right|\leqslant \frac{1}{k}. \]
+这样直观地, $E\subset\bigcup_{x\in E}B_x$, $f(E)\subset \bigcup_{x\in E} \frac{B_{^{f(x)}}}{k}$. $\frac {B_{^{x\vphantom{h}}}}{k}$是球心不变, 半径变为原来的$\frac{1}{k}$得到的. 但是此球族不一定可数, 测度也不好估计, 因此需要用到一些覆盖定理.\par
+\medskip
+	令$\mathcal F$是一组$\mathbb R^n$中的闭球, 且满足$a=\sup\left\{\,\operatorname*{diam}B; B\in \mathcal F\,\right\}$有限, 则存在可数不交球族$\{B_n\}_{n\geqslant 0}$满足
+	\[\bigcup_{B\in\mathcal F}B\subset\bigcup_{n\geqslant 0}5B_n.\]
+	\begin{proof}
+		各种各样覆盖定理的证明都可以尝试从先选大球再选小球, 首先将球半径分层:
+		\[
+				\mathcal F_n=\left\{
+				B\in\mathcal F; \operatorname{diam}B\in\Bigl( \frac{a}{2^n},\frac{a}{2^{n-1}}\Bigr]
+				\right\},\quad n\geqslant 1.
+		\]
+		令$\mathcal G_1\subset \mathcal F_1$是其某极大不交组; $\mathcal G_n$是和$\bigcup_{j=1}^{n-1}\mathcal G_j$中元素不交的某极大不交组(可以对所有有理数, 选取含其的不交球然后并起来得到), 令$\mathcal G\coloneq \bigcup_{n\geqslant 1}\mathcal G_n$, $\mathcal G$可数, 记其为$\{B_n\}_{n\geqslant 0}$. 给定$B\in\mathcal F$, 则不妨令$B\in\mathcal F_k$, 故存在$B_n\in\bigcup_{j=1}^{\,k}\mathcal G_j$满足$B_n\cap B\neq\varnothing$, 由于$\operatorname*{diam}B_n\geqslant  \frac{a}{2^k}$, $\operatorname*{diam}B\leqslant \frac{a}{2^{k-1}}$, 故可以得到$B\subset 5B_n$.
+	\end{proof}
+	现在考虑新的$B_x$满足
+	\[y\in 5B_x\setminus\{x\}\implies \left| \frac{f(y)-f(x)}{y-x} \right|\leqslant \frac{1}{k}.\]
+	其由一个可数族$\{B_n\}_{n\geqslant 0}$满足$E\subset\bigcup_{x\in E}B_x\subset\bigcup_{n\geqslant 0}5B_n$. 故
+	\[\symfrak{m}^*(f(E))\leqslant \sum_{n\geqslant 0} \symfrak{m}^* (f(5B_n))\leqslant \sum_{n\geqslant 0} \frac{\symfrak{m}(5B_n)}{k}\leqslant \frac{10}{k}.\]
+	最后一个等式是由于$\sum_{n\geqslant 0}\symfrak{m}(5B_n)\subset \sum_{n\geqslant 0}5\symfrak{m}(B_n)\leqslant 10$ (由于$B_n$的球心在$[0,1]$中).
+
+
+这事实上是 Sard 定理的一个特例, 它的叙述是这样的
+\begin{remark}
+	Let
+	\[
+			f\colon \mathbb{R}^n \rightarrow \mathbb{R}^m
+	\]
+	be $C^k$, where $k \geq \max \{n-m+1,1\}$. Let $X \subset \mathbb{R}^n$ denote the critical set of $f$, which is the set of points $x \in \mathbb{R}^n$ at which the Jacobian matrix of $f$ has rank $<m$. Then the image $f(X)$ has Lebesgue measure $0$ in $\mathbb{R}^m$.
+
+	Intuitively speaking, this means that although $X$ may be large, its image must be small in the sense of Lebesgue measure: while $f$ may have many critical points in the domain $\mathbb{R}^n$, it must have few critical values in the image $\mathbb{R}^m$.
+\end{remark}
+	
+\begin{remark}
+	More generally, the result also holds for mappings between differentiable manifolds $M$ and $N$ of dimensions $m$ and $n$, respectively. The critical set $X$ of a $C^k$ function
+	\[
+			f: N \rightarrow M
+	\]
+	consists of those points at which the differential
+	\[
+			d f: T N \rightarrow T M
+	\]
+	has rank less than $m$ as a linear transformation. If $k \geq \max \{n-m+1,1\}$, then Sard's theorem asserts that the image of $X$ has measure zero as a subset of $M$. This formulation of the result follows from the version for Euclidean spaces by taking a countable set of coordinate patches. The conclusion of the theorem is a local statement, since a countable union of sets of measure zero is a set of measure zero, and the property of a subset of a coordinate patch having zero measure is invariant under diffeomorphism.
+\end{remark}
+
+Sard定理的假设是映射横截性的特例. 用Sard定理可以证明，维度互补的子流形之间，或子流形与到空间的映射之间的横截交是光滑子流形. 
+
+事实上横截性就是这样一个生于便利地定义子流形的性质, 它与相交理论有着密切关系，作为正则值原像是子流形的推广，微分拓扑中引入了横截条件来刻画$f^{-1}(S)$是$X$的子流形的条件，特别地$S$是$Y$的子流形，如果考虑嵌入$f \colon X \to Y$ ，那么横截条件就是描述$X$和$S$在$Y$中是否``规则地相交''（例如相交线）. 从这个角度出发可以引出相交数这个同伦不变量，进而用微分拓扑的观点给出了映射度, Euler示性数, Lefschetz数的定义. 在 GuilleminPollback的书中有着非常详细的论述，并且证明了 Poincare-Hopf定理（向量场的指标和是示性数）, Lefschetz不动点定理（Lefschetz数不等于$0$等价于映射有不动点）, Hopf映射度定理（球面间映射$f$, $g$如果$\deg f = \deg g$则$f$, $g$同伦），最后一章证明了Gauss-Bonnet公式. 这些漂亮的结果其实在GTM 82中也都有（除了Hopf映射度定理）.
+
+首先我们介绍正则原像定理
+\begin{remark}
+	
+\end{remark}
+
+例如，若将有向流形切丛的光滑截面（即向量场）视为基到总空间的映射，并与零截面（无论视作映射还是子流形）横截相交，则截面的零集（即向量场的奇点）形成基的光滑$0$维子空间（即有符号点集）. 符号与向量场的指标一致，因此符号之和（即零集的基类）等于流形的Euler特征. 更一般地说，对于有限维有向光滑闭流形上的向量丛，横截于截面的零集是余维数等于丛之秩的基的子流形，其同调类Poincare对偶于丛的Euler类. 
+
+一个及其特殊的情形是：若实数到实数的可微函数在零点有非零的导数，则称之为简单零点，图像在此处横截于x轴；零导数意味着曲线的水平切线，与x轴的切空间一致. 
 \end{document}
 局部紧空间, 连续函数空间, 拓扑, 连续线性泛函, 测度
 集合上的取值, 闭集上的特征函数to
